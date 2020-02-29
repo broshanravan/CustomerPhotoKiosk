@@ -16,7 +16,7 @@ import java.awt.event.WindowEvent;
 public class MainScreen extends JFrame {
 
     private int width = 500;
-    private int hight = 200;
+    private int hight = 300;
 
     JButton FilmProcBtn = new JButton("Film Processing");
     JButton PhotoGiftBtn = new JButton("PhotoGift");
@@ -26,10 +26,8 @@ public class MainScreen extends JFrame {
 
     ButtonListener buttonListener = new ButtonListener();
 
-    public void setUpScreen() {
+    public void setupScreen() {
 
-        //hight = 700;
-        ///width = 1100;
         setSize(width, hight);
         getContentPane().setLayout(new BorderLayout());
 
@@ -37,7 +35,7 @@ public class MainScreen extends JFrame {
         backPanel.setLayout(new BorderLayout());
 
 
-        Dimension d = new Dimension(100, 25);
+        Dimension d = new Dimension(150, 150);
         FilmProcBtn.setPreferredSize(d);
         PhotoGiftBtn.setPreferredSize(d);
         engravingBtn.setPreferredSize(d);
@@ -49,7 +47,7 @@ public class MainScreen extends JFrame {
         buttonPanel.add(FilmProcBtn, BorderLayout.WEST);
         ;
         buttonPanel.add(PhotoGiftBtn, BorderLayout.EAST);
-        buttonPanel.add(engravingBtn, BorderLayout.EAST);
+        buttonPanel.add(engravingBtn, BorderLayout.CENTER);
 
 
         //buttonPanel.setPreferredSize(new Dimension(1000, 25));
