@@ -1,6 +1,7 @@
 import pl.EngravingScreen;
 import pl.FilmPrcessingScreen;
 import pl.MainScreen;
+import pl.PhotoGiftScreen;
 
 public class PhotoKiosk {
 
@@ -9,14 +10,18 @@ public class PhotoKiosk {
         MainScreen mainScreen = new MainScreen();
         FilmPrcessingScreen filmPrcessingScreen = new FilmPrcessingScreen();
         EngravingScreen engravingScreen = new EngravingScreen();
+        //PhotoGiftScreen photoGiftScreen = new PhotoGiftScreen();
 
 
-        engravingScreen.setupScreen();
-        engravingScreen.setVisible(true);
+        //photoGiftScreen.setupScreen();
+        //photoGiftScreen.setVisible(true);
+
+        //engravingScreen.setupScreen();
+        //engravingScreen.setVisible(true);
 
 
-        //mainScreen.setupScreen();
-        //mainScreen.setVisible(true);
+        mainScreen.setupScreen();
+        mainScreen.setVisible(true);
 
         //filmPrcessingScreen.setupScreen();
         //filmPrcessingScreen.setVisible(true);

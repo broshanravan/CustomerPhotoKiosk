@@ -1,28 +1,39 @@
 package dl;
 
-import bl.Customer;
+import bl.beens.Customer;
+import bl.beens.Order;
 
-public class CustomerInventory {
+public interface CustomerInventory {
 
-    public Customer findCustomer(String email){
-        Customer customer = new Customer();
+    public Customer findCustomer(String email);
 
+    public boolean customerExists(String email);
 
-        return customer;
-    }
+    public void saveCustomer(Customer customer);
 
-    public boolean customerExists(String email){
+    class OdrerJSON {
+        long orderId;
+        Order order;
 
-        boolean exists = false;
+        public OdrerJSON(long orderId, Order order) {
+            this.orderId = orderId;
+            this.order = order;
+        }
 
+        public long getOrderId() {
+            return orderId;
+        }
 
-        return exists;
+        public void setOrderId(long orderId) {
+            this.orderId = orderId;
+        }
 
-    }
+        public Order getOrder() {
+            return order;
+        }
 
-    public void saveCustomer(Customer customer){
-
+        public void setOrder(Order order) {
+            this.order = order;
+        }
     }
 }
-
-

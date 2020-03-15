@@ -1,7 +1,27 @@
 package pl;
 
+import bl.ProcessFilmDevelopmentOrder;
+import bl.ProcessOtherOrders;
+import bl.beens.Customer;
+import bl.beens.FilmProcessingOrder;
+import bl.enums.FilmType;
+import dl.CustomerInventory;
+import dl.CustomerInventoryImpl;
+import org.jdatepicker.impl.DateComponentFormatter;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.Properties;
 
 public class FilmPrcessingScreen extends JFrame {
 
@@ -16,18 +36,17 @@ public class FilmPrcessingScreen extends JFrame {
     JLabel collectionDateLbl = new JLabel("Collection Date:");
     JLabel printSizeLbl = new JLabel("Print Size:");
     JLabel filmTypeLbl = new JLabel("Film Type:");
+    JLabel filmSizeLbl = new JLabel("Film size:");
+    JLabel printTypeLbl = new JLabel("Print Type:");
 
-    JLabel totaLbl = new JLabel("Total Price : £");
-    JLabel depositeLbl = new JLabel("Deposit :      £");
+
+    JLabel totalLbl = new JLabel("Total Price : £");
+    JLabel depositLbl = new JLabel("Deposit :      £");
     JLabel toPayLbl = new JLabel("Left to Pay : £");
 
     JLabel borderLbl = new JLabel("Border");
     JLabel printtimeLbl = new JLabel("Print time");
 
-    JLabel oneLbl = new JLabel("1");
-    JLabel twoLbl = new JLabel("2");
-    JLabel threeLbl = new JLabel("3");
-    JLabel otherLbl = new JLabel("Other");
     JLabel sizeLbl = new JLabel("Size:");
     JLabel copiesLbl = new JLabel("Copies:");
 
@@ -37,9 +56,6 @@ public class FilmPrcessingScreen extends JFrame {
     JTextField telFld = new JTextField();
     JTextField jobNoFld = new JTextField();
     JTextField orderDateFld = new JTextField();
-    JTextField CollectionDateFld = new JTextField();
-
-    JTextField sizeFld = new JTextField();
 
     JTextField totalFld = new JTextField();
     JTextField depositFld = new JTextField();
@@ -49,11 +65,6 @@ public class FilmPrcessingScreen extends JFrame {
     JRadioButton film5x74Radio = new JRadioButton("5 x 7\" (15x85)");
     JRadioButton film6x8Radio = new JRadioButton("6 x 8\" (15x120)");
 
-    JRadioButton size6x4Radio = new JRadioButton("6 x 4");
-    JRadioButton size5x74Radio = new JRadioButton("5 x ");
-    JRadioButton size6x8Radio = new JRadioButton("6 x 8)");
-
-
 
     JRadioButton hundred10Radio = new JRadioButton("110");
     JRadioButton hundred35Radio = new JRadioButton("135");
@@ -61,8 +72,7 @@ public class FilmPrcessingScreen extends JFrame {
 
 
     JRadioButton colorRadio = new JRadioButton("Color");
-    JRadioButton bpwRadio = new JRadioButton("BPW");
-
+    JRadioButton bAwRadio = new JRadioButton("Black & White");
 
 
     JRadioButton withBorderRadio = new JRadioButton("With Border");
@@ -87,62 +97,117 @@ public class FilmPrcessingScreen extends JFrame {
     JButton cancelBtn =new JButton("Cancel");
     JButton submitBtn =new JButton("Submit");
 
+    ButtonGroup filmSizeGroup = new ButtonGroup();
+    ButtonGroup colorCroup = new ButtonGroup();
+    ButtonGroup printSizeCroup = new ButtonGroup();
+    ButtonGroup borderCroup = new ButtonGroup();
+    ButtonGroup printTimeCroup = new ButtonGroup();
+    ButtonGroup copiesNumCroup = new ButtonGroup();
+
+    ProcessFilmDevelopmentOrder processOtherOrders = new ProcessFilmDevelopmentOrder();
+
+    CustomerInventory customerInventory = new CustomerInventoryImpl();
 
 
+    String fileName = "C:\\Users\\Behrooz\\Mainworkspace\\CustomerPhotoKiosk\\logos\\KodakLogo.jpg";
+    //ImageIcon KodakLogo = new ImageIcon("C:\\Users\\Behrooz\\Mainworkspace\\CustomerPhotoKiosk\\logos\\KodakLogo.jpg");
 
+    JDatePickerImpl datePicker = null;
     public void setupScreen() {
+
+        setTitle("Film Processing");
+        setAlwaysOnTop( true );
         getContentPane().setBackground(new Color(255,255,242));
         this.setLayout(null);
         Dimension d = new Dimension(width, hight);
         this.setSize(width, hight);
+        setResizable(false);
+
+
+        /*************************************************************** Adding Kodak logo to Panel **********************************************************************************/
+
+
+        BufferedImage KodakLogo = null;
+        try {
+            KodakLogo = ImageIO.read(new File(fileName));
+            Image dimg = KodakLogo.getScaledInstance(500, 90, Image.SCALE_SMOOTH);
+            ImageIcon LogoIcon = new ImageIcon(dimg);
+
+            JLabel logoLabel = new JLabel(LogoIcon);
+            getContentPane().add(logoLabel);
+            logoLabel.setBounds(100,10,700,110);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+
 
         /** Adding Labels and Fields*/
 
         getContentPane().add(emailLbl);
-        emailLbl.setBounds(20,120,100,25);
+        emailLbl.setBounds(20,150,100,25);
 
 
         getContentPane().add(emailFld);
-        emailFld.setBounds(120,120,200,25);
+        emailFld.setBounds(120,150,200,25);
 
         getContentPane().add(searchBtn);
-        searchBtn.setBounds(350,120,150,25);
+        searchBtn.setBounds(350,150,150,25);
 
 
         getContentPane().add(nameLbl);
-        nameLbl.setBounds(20,150,100,25);
+        nameLbl.setBounds(20,180,100,25);
 
         getContentPane().add(nameFld);
-        nameFld.setBounds(120,150,200,25);
-
-
+        nameFld.setBounds(120,180,200,25);
 
 
         getContentPane().add(telLbl);
-        telLbl.setBounds(20,180,100,25);
+        telLbl.setBounds(20,210,100,25);
 
         getContentPane().add(telFld);
-        telFld.setBounds(120,180,200,25);
+        telFld.setBounds(120,210,200,25);
 
 
 
         getContentPane().add(orderDateLbl);
-        orderDateLbl.setBounds(550,120,100,25);
+        orderDateLbl.setBounds(550,150,100,25);
 
         getContentPane().add(orderDateFld);
-        orderDateFld.setBounds(670,120,200,25);
+        orderDateFld.setBounds(670,150,200,25);
 
         getContentPane().add(collectionDateLbl);
-        collectionDateLbl.setBounds(550,150,100,25);
+        collectionDateLbl.setBounds(550,180,100,25);
 
-        getContentPane().add(CollectionDateFld);
-        CollectionDateFld.setBounds(670,150,200,25);
+
+        Properties p = new Properties();
+        p.put("text.today", "today");
+        p.put("text.month", "month");
+        p.put("text.year", "year");
+        UtilDateModel model = new UtilDateModel();
+        JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+        datePicker = new JDatePickerImpl(datePanel, new DateComponentFormatter());
+
+        getContentPane().add(datePicker);
+        datePicker.setOpaque(false);
+
+
+        //getContentPane().add(CollectionDateFld);
+        datePicker.setBounds(670,180,200,25);
+
+
 
         getContentPane().add(jobNoLbl);
-        jobNoLbl.setBounds(550,180,100,25);
+        jobNoLbl.setBounds(550,210,100,25);
 
         getContentPane().add(jobNoFld);
-        jobNoFld.setBounds(670,180,200,25);
+        jobNoFld.setBounds(670,210,200,25);
 
 
 
@@ -166,7 +231,7 @@ public class FilmPrcessingScreen extends JFrame {
         film5x74Radio.setBounds(20,430,120,25);
         film5x74Radio.setOpaque(false);
 
-        ButtonGroup printSizeCroup = new ButtonGroup();
+
 
         printSizeCroup.add(film6x8Radio);
         printSizeCroup.add(film6x4Radio);
@@ -188,7 +253,7 @@ public class FilmPrcessingScreen extends JFrame {
         glossyRadio.setBounds(400,430,120,25);
         glossyRadio.setOpaque(false);
 
-        ButtonGroup borderCroup = new ButtonGroup();
+
 
         borderCroup.add(withBorderRadio);
         borderCroup.add(noBorderRadio);
@@ -210,8 +275,6 @@ public class FilmPrcessingScreen extends JFrame {
         mafiFourHr4Radio.setBounds(650,430,120,25);
         mafiFourHr4Radio.setOpaque(false);
 
-        ButtonGroup printTimeCroup = new ButtonGroup();
-
         printTimeCroup.add(oneHRRadio);
         printTimeCroup.add(twentyFourHr4Radio);
         printTimeCroup.add(mafiFourHr4Radio);
@@ -228,66 +291,84 @@ public class FilmPrcessingScreen extends JFrame {
         filmTypeCombo.setOpaque(false);
 
 
+
         /** Film Type radio group*/
+        getContentPane().add(filmSizeLbl);
+        filmSizeLbl.setBounds(400,490,100,25);
+
+
+
         getContentPane().add(hundred10Radio);
-        hundred10Radio.setBounds(400,490,50,25);
+        hundred10Radio.setBounds(400,520,50,25);
         hundred10Radio.setOpaque(false);
 
         getContentPane().add(hundred20Radio);
-        hundred20Radio.setBounds(400,540,50,25);
+        hundred20Radio.setBounds(400,550,50,25);
         hundred20Radio.setOpaque(false);
 
         getContentPane().add(hundred35Radio);
-        hundred35Radio.setBounds(400,590,50,25);
+        hundred35Radio.setBounds(400,580,50,25);
         hundred35Radio.setOpaque(false);
 
 
-        ButtonGroup filmTypeCroupG = new ButtonGroup();
 
-        filmTypeCroupG.add(hundred10Radio);
-        filmTypeCroupG.add(hundred35Radio);
-        filmTypeCroupG.add(hundred20Radio);
+
+        filmSizeGroup.add(hundred10Radio);
+        filmSizeGroup.add(hundred35Radio);
+        filmSizeGroup.add(hundred20Radio);
+
 
 
         /** Color radio group*/
+
+        getContentPane().add(printTypeLbl);
+        printTypeLbl.setBounds(650,490,60,25);
+
         getContentPane().add(colorRadio);
-        colorRadio.setBounds(650,490,60,25);
+        colorRadio.setBounds(650,520,60,25);
         colorRadio.setOpaque(false);
 
-        getContentPane().add(bpwRadio);
-        bpwRadio.setBounds(650,540,60,25);
-        bpwRadio.setOpaque(false);
+        getContentPane().add(bAwRadio);
+        bAwRadio.setBounds(650,550,150,25);
+        bAwRadio.setOpaque(false);
 
-        ButtonGroup colorCroup = new ButtonGroup();
+
 
         colorCroup.add(colorRadio);
-        colorCroup.add(bpwRadio);
+        colorCroup.add(bAwRadio);
 
         /** Copies Number radio group*/
         getContentPane().add(copiesLbl);
-        copiesLbl.setBounds(25,640,100,25);
+        copiesLbl.setBounds(20,640,60,25);
 
         getContentPane().add(oneRadio);
-        oneRadio.setBounds(100,640,40,25);
+        oneRadio.setBounds(20,670,60,25);
         oneRadio.setOpaque(false);
 
         getContentPane().add(twoRadio);
-        twoRadio.setBounds(160,640,40,25);
+        twoRadio.setBounds(120,670,60,25);
         twoRadio.setOpaque(false);
 
+
         getContentPane().add(threeRadio);
-        threeRadio.setBounds(220,640,40,25);
+        threeRadio.setBounds(20,700,60,25);
         threeRadio.setOpaque(false);
 
+
         getContentPane().add(fourRadio);
-        fourRadio.setBounds(280,640,40,25);
+        fourRadio.setBounds(120,700,60,25);
         fourRadio.setOpaque(false);
 
+
         getContentPane().add(otherRadio);
-        otherRadio.setBounds(340,640,60,25);
+        otherRadio.setBounds(20,730,60,25);
         otherRadio.setOpaque(false);
 
-        ButtonGroup copiesNumCroup = new ButtonGroup();
+        getContentPane().add(otherFld);
+        otherFld.setBounds(80,730,60,25);
+
+
+
 
         copiesNumCroup.add(oneRadio);
         copiesNumCroup.add(twoRadio);
@@ -295,51 +376,26 @@ public class FilmPrcessingScreen extends JFrame {
         copiesNumCroup.add(fourRadio);
         copiesNumCroup.add(otherRadio);
 
-        /** Size radio group*/
-        getContentPane().add(sizeLbl);
-        sizeLbl.setBounds(655,640,60,25);
 
 
-        getContentPane().add(size5x74Radio);
-        size5x74Radio.setBounds(650,690,60,25);
-        size5x74Radio.setOpaque(false);
-
-        getContentPane().add(size6x4Radio);
-        size6x4Radio.setBounds(650,720,60,25);
-        size6x4Radio.setOpaque(false);
-
-        getContentPane().add(size6x8Radio);
-        size6x8Radio.setBounds(650,750,60,25);
-        size6x8Radio.setOpaque(false);
-
-        ButtonGroup sizeGroup = new ButtonGroup();
-
-        sizeGroup.add(size6x4Radio);
-        sizeGroup.add(size5x74Radio);
-        sizeGroup.add(size6x8Radio);
-
-
-
-
-
-        getContentPane().add(totaLbl);
-        totaLbl.setBounds(20,690,100,25);
+        getContentPane().add(totalLbl);
+        totalLbl.setBounds(450,670,100,25);
 
         getContentPane().add(totalFld);
-        totalFld.setBounds(100,690,100,25);
+        totalFld.setBounds(550,670,100,25);
 
-        getContentPane().add(depositeLbl);
-        depositeLbl.setBounds(20,720,100,25);
+        getContentPane().add(depositLbl);
+        depositLbl.setBounds(450,700,100,25);
 
         getContentPane().add(depositFld);
-        depositFld.setBounds(100,720,100,25);
+        depositFld.setBounds(550,700,100,25);
 
 
         getContentPane().add(toPayLbl);
-        toPayLbl.setBounds(20,750,100,25);
+        toPayLbl.setBounds(450,730,100,25);
 
         getContentPane().add(toPayFld);
-        toPayFld.setBounds(100,750,100,25);
+        toPayFld.setBounds(550,730,100,25);
 
 
 
@@ -349,7 +405,9 @@ public class FilmPrcessingScreen extends JFrame {
         getContentPane().add(cancelBtn);
         cancelBtn.setBounds(600,800,100,25);
 
-
+        ButtonListener buttonListener = new ButtonListener();
+        submitBtn.addActionListener(buttonListener);
+        cancelBtn.addActionListener(buttonListener);
 
 
 
@@ -371,11 +429,6 @@ public class FilmPrcessingScreen extends JFrame {
         getContentPane().add(line_2);
         getContentPane().add(line_3);
 
-        /*
-        line_1.setBackground(new Color(100,100,100,100));
-        line_2.setBackground(new Color(0,0,0,0));
-        line_3.setBackground(new Color(0,0,0,0));
-        */
 
         line_1.setBounds(1,250,1500,10);
         line_2.setBounds(1,470,1500,10);
@@ -383,5 +436,162 @@ public class FilmPrcessingScreen extends JFrame {
 
     }
 
+
+    private class ButtonListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            if (e.getActionCommand().equals("Submit")) {
+                saveOrder();
+            } else if (e.getActionCommand().equals("Search Details")) {
+                findCustomer();
+            } else if (e.getActionCommand().equals("Cancel")) {
+                setVisible(false);
+            }
+
+        }
+
+        double totalPrice =0;
+        double depoisit =0;
+        double balance = 0;
+
+
+        private void findCustomer(){
+
+            CustomerInventory customerInventoryImpl = new CustomerInventoryImpl();
+            String customerEmail = emailFld.getText();
+            if(customerEmail != null && !"".equalsIgnoreCase(customerEmail)){
+                Customer customer = customerInventoryImpl.findCustomer(customerEmail);
+
+                if(customer.getMobileNum() !=null &&  !"".equalsIgnoreCase(customer.getMobileNum())){
+                    telFld.setText(customer.getMobileNum());
+                }
+
+                if(customer.getName() !=null &&  !"".equalsIgnoreCase(customer.getName())){
+                    nameFld.setText(customer.getName());
+                }
+            }
+
+        }
+
+
+        private boolean isFormDataValid(FilmProcessingOrder filmProcessingOrder, Customer customer){
+            boolean valid = true;
+
+
+            if(customer.getName() == null || "".equalsIgnoreCase(customer.getName())){
+                valid = false;
+            }
+            if(customer.getEmail()== null || "".equalsIgnoreCase(customer.getEmail())){
+                valid = false;
+            }
+
+            if(customer.getMobileNum() == null || "".equalsIgnoreCase(customer.getMobileNum())){
+                valid = false;
+            }
+
+            if(filmProcessingOrder.getCustomerEmail() ==null || "".equalsIgnoreCase(filmProcessingOrder.getCustomerEmail())){
+                valid = false;
+            }
+
+
+
+             if (totalFld.getText() == null || "".equalsIgnoreCase(totalFld.getText().trim())){
+                valid = false;
+             }else{
+                 try{
+                     totalPrice =  Integer.parseInt(totalFld.getText());
+                     filmProcessingOrder.setTotalPrice(totalPrice);
+
+                 } catch(NumberFormatException nfe){
+                     valid = false;
+                 }
+
+            }
+
+            if (depositFld.getText() != null && !"".equalsIgnoreCase(depositFld.getText().trim())){
+
+                try{
+                    depoisit =  Integer.parseInt(totalFld.getText());
+                    filmProcessingOrder.setDepoisite(depoisit);
+
+                } catch(NumberFormatException nfe){
+                    valid = false;
+                }
+
+            }
+
+            if (toPayFld.getText() == null || "".equalsIgnoreCase(toPayFld.getText().trim())){
+                valid = false;
+            }else{
+                try{
+                    balance =  Integer.parseInt(toPayFld.getText());
+                    filmProcessingOrder.setBalance(balance);
+
+                } catch(NumberFormatException nfe){
+                    valid = false;
+                }
+
+            }
+
+            return valid;
+        }
+
+        private void saveOrder(){
+
+
+
+
+            String filmTypeStr = filmTypeCombo.getSelectedItem().toString();
+
+            FilmType filmType = FilmType.valueOf(filmTypeStr);
+
+            String customerName =  nameFld.getName();
+            String customerEmail = emailFld.getText();
+            String telephone = telFld.getToolTipText();
+
+            Date collectionDate  =  (Date) datePicker.getModel().getValue();
+            boolean color = "Color".equalsIgnoreCase(colorCroup.getSelection().getActionCommand());
+
+            String printSize = printSizeCroup.getSelection().getActionCommand();
+            String borderType = borderCroup.getSelection().getActionCommand();
+            String printTime = printTimeCroup.getSelection().getActionCommand();
+            String numberOfCopiesStr = copiesNumCroup.getSelection().getActionCommand();
+            String filmSize = filmSizeGroup.getSelection().getActionCommand();
+
+            if("Oher".equalsIgnoreCase(numberOfCopiesStr)){
+                numberOfCopiesStr = otherFld.getText();
+            }
+            int numberOfCopies = Integer.parseInt(numberOfCopiesStr);
+            Customer customer = new Customer(customerName,  telephone, customerEmail) ;
+
+
+
+            FilmProcessingOrder filmProcessingOrder = new FilmProcessingOrder(
+                                                                    customerEmail,
+                                                                    new Date(),
+                                                                    collectionDate,
+                                                                    printSize,
+                                                                    borderType,
+                                                                    printTime,
+                                                                    filmType,
+                                                                    color,
+                                                                    numberOfCopies,
+                                                                    filmSize,
+                                                                    totalPrice,
+                                                                    depoisit,
+                                                                    balance
+                                                                 );
+
+
+            if(isFormDataValid(filmProcessingOrder,customer)){
+                processOtherOrders.saveFilmProcessingOrder(filmProcessingOrder,customer);
+                customerInventory.saveCustomer(customer);
+            }
+
+        }
+
+
+
+    }
 
 }

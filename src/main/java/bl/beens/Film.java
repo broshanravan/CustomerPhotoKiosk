@@ -1,4 +1,4 @@
-package bl;
+package bl.beens;
 
 public class Film {
     private String type;
