@@ -4,7 +4,7 @@ import bl.beens.Order;
 
 public interface OrderInventory {
 
-    public Order getProcessionOrder(long orderNumber);
+    public Order retrieveOrder(long orderNumber);
 
-    public void saveProcessionOrder(Order order);
+    public long saveOrder(Order order);
 }

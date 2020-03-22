@@ -319,13 +319,12 @@ public class EngravingScreen extends JFrame {
             String customerName =  nameFld.getName();
             String customerEmail = emailFld.getText();
             String telephone = telFld.getToolTipText();
-            long jobNumber = 0;
+
             Date collectionDate  =  (Date) datePicker.getModel().getValue();
 
             Order enngravingOrder = new Order(
                                                     customerEmail,
                                                     OrderType.Engraving,
-                                                    jobNumber,
                                                     customerInstruction,
                                                     aminInstruction,
                                                     collectionDate,
@@ -339,7 +338,7 @@ public class EngravingScreen extends JFrame {
 
             if(isValid()){
                 if(isOrderValid(enngravingOrder, customer)){
-                    orderInventory.saveProcessionOrder(enngravingOrder);
+                    orderInventory.saveOrder(enngravingOrder);
                     customerInventory.saveCustomer(customer);
                 }
             }

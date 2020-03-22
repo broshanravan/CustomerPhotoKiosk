@@ -18,13 +18,13 @@ public class ProcessFilmDevelopmentOrder {
     public void saveFilmProcessingOrder(FilmProcessingOrder order, Customer customer){
 
         customerInventory.saveCustomer(customer);
-        filmProceccingOrderInventory.saveProcessionOrder(order);
+        filmProceccingOrderInventory.saveProcessingOrder(order);
 
     }
 
 
     public FilmProcessingOrder getFilmProcessingOrder(long OrderNumber){
-        FilmProcessingOrder filmProcessingOrder = filmProceccingOrderInventory.getProcessionOrder(OrderNumber);
+        FilmProcessingOrder filmProcessingOrder = filmProceccingOrderInventory.getProcessingOrder(OrderNumber);
 
         return filmProcessingOrder;
 

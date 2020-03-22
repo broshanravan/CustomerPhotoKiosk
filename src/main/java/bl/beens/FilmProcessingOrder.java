@@ -22,17 +22,36 @@ public class FilmProcessingOrder {
     private String filmSize;
 
     private double totalPrice;
-    private double depoisite;
+    private double deposit;
     private double balance;
+
+    private boolean completed;
 
     public FilmProcessingOrder(){
 
     }
 
+    public void displayFilmProcessingOrder(){
+        System.out.println("orderNum = " + orderNum);
+        System.out.println("customerEmail = " + customerEmail);
+        System.out.println("orderDate = " + orderDate);
+        System.out.println("collectionDate = " + collectionDate);
+        System.out.println("printSize = " + printSize);
+        System.out.println("borderType = " + borderType);
+        System.out.println("printTime = " + printTime);
+        System.out.println("filmType = " + filmType);
+        System.out.println("color = " + color);
+        System.out.println("numberOfCopies = " + numberOfCopies);
+        System.out.println("filmSize = " + filmSize);
+        System.out.println("totalPrice = " + totalPrice);
+        System.out.println("depoisit = " + deposit);
+        System.out.println("balance = " + balance);
+    }
+
     public FilmProcessingOrder(String customerEmail,
-                               Date orderaAte,
+                               Date orderDate,
                                Date collectionDate,
-                               String printSise,
+                               String printSize,
                                String borderType,
                                String printTime,
                                FilmType filmType,
@@ -40,13 +59,12 @@ public class FilmProcessingOrder {
                                int numberOfCopies,
                                String filmSize,
                                double totalPrice,
-                               double depoisit,
+                               double deposit,
                                double balance) {
         this.customerEmail = customerEmail;
-        this.orderNum = orderNum;
-        this.orderDate = orderaAte;
+        this.orderDate = orderDate;
         this.collectionDate = collectionDate;
-        this.printSize = printSise;
+        this.printSize = printSize;
         this.borderType = borderType;
         this.printTime = printTime;
         this.filmType = filmType;
@@ -54,7 +72,36 @@ public class FilmProcessingOrder {
         this.numberOfCopies = numberOfCopies;
         this.filmSize = filmSize;
         this.totalPrice = totalPrice;
-        this.depoisite = depoisit;
+        this.deposit = deposit;
+        this.balance = balance;
+    }
+    public FilmProcessingOrder(long orderNum,
+                               String customerEmail,
+                               Date orderDate,
+                               Date collectionDate,
+                               String printSize,
+                               String borderType,
+                               String printTime,
+                               FilmType filmType,
+                               boolean color,
+                               int numberOfCopies,
+                               String filmSize,
+                               double totalPrice,
+                               double deposit,
+                               double balance) {
+        this.orderNum = orderNum;
+        this.customerEmail = customerEmail;
+        this.orderDate = orderDate;
+        this.collectionDate = collectionDate;
+        this.printSize = printSize;
+        this.borderType = borderType;
+        this.printTime = printTime;
+        this.filmType = filmType;
+        this.color = color;
+        this.numberOfCopies = numberOfCopies;
+        this.filmSize = filmSize;
+        this.totalPrice = totalPrice;
+        this.deposit = deposit;
         this.balance = balance;
     }
 
@@ -154,12 +201,12 @@ public class FilmProcessingOrder {
         this.totalPrice = totalPrice;
     }
 
-    public double getDepoisite() {
-        return depoisite;
+    public double getDeposit() {
+        return deposit;
     }
 
-    public void setDepoisite(double depoisite) {
-        this.depoisite = depoisite;
+    public void setDeposit(double deposit) {
+        this.deposit = deposit;
     }
 
     public double getBalance() {
@@ -168,5 +215,13 @@ public class FilmProcessingOrder {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }

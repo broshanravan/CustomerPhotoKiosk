@@ -22,7 +22,9 @@ public class Order {
 
     }
 
-    public Order(String email, OrderType orderType, long jobNumber, String customerInstruction, String adminInstruction,  Date collectionDate, double totalPrice, double deposit, double remainting) {
+
+    public Order( long jobNumber, String email, OrderType orderType, String customerInstruction,
+               String adminInstruction,  Date collectionDate, double totalPrice, double deposit, double remainting) {
         this.email = email;
         this.orderType = orderType;
         this.jobNumber = jobNumber;
@@ -32,6 +34,18 @@ public class Order {
         this.totalPrice = totalPrice;
         this.deposit = deposit;
         this.balance = remainting;
+    }
+
+    public Order(String email, OrderType orderType, String customerInstruction,
+                 String adminInstruction,  Date collectionDate, double totalPrice, double deposit, double remaining) {
+        this.email = email;
+        this.orderType = orderType;
+        this.customerInstruction = customerInstruction;
+        this.adminInstruction = adminInstruction;
+        this.collectionDate = collectionDate;
+        this.totalPrice = totalPrice;
+        this.deposit = deposit;
+        this.balance = remaining;
     }
 
     public String getEmail() {
@@ -105,4 +119,15 @@ public class Order {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
+    public void displayOrder() {
+        System.out.println("jobNumber = " + jobNumber);
+        System.out.println("customerInstruction = " + customerInstruction);
+        System.out.println("adminInstruction = " + adminInstruction);
+        System.out.println("collectionDate = " + collectionDate);
+        System.out.println("totalPrice = " + totalPrice);
+        System.out.println("deposit = " + deposit);
+        System.out.println("balance = " + balance);
+    }
+
 }

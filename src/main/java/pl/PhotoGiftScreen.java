@@ -289,13 +289,12 @@ public class PhotoGiftScreen  extends JFrame {
             String customerName =  nameFld.getName();
             String customerEmail = emailFld.getText();
             String telephone = telFld.getToolTipText();
-            long jobNumber = 0;
+
             Date collectionDate  =  (Date) datePicker.getModel().getValue();
 
-            Order enngravingOrder = new Order(
+            Order photoGiftOrder = new Order(
                     customerEmail,
                     OrderType.PhotoGift,
-                    jobNumber,
                     customerInstruction,
                     aminInstruction,
                     collectionDate,
@@ -308,8 +307,8 @@ public class PhotoGiftScreen  extends JFrame {
             Customer customer = new Customer(customerName,  telephone, customerEmail) ;
 
             if(isValid()){
-                if(isOrderValid(enngravingOrder, customer)){
-                    orderInventory.saveProcessionOrder(enngravingOrder);
+                if(isOrderValid(photoGiftOrder, customer)){
+                    orderInventory.saveOrder(photoGiftOrder);
                     customerInventory.saveCustomer(customer);
                 }
             }

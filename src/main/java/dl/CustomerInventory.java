@@ -9,31 +9,11 @@ public interface CustomerInventory {
 
     public boolean customerExists(String email);
 
+    public void insertCustomer(Customer customer);
+
+    public void updateCustomer(Customer customer);
+
     public void saveCustomer(Customer customer);
 
-    class OdrerJSON {
-        long orderId;
-        Order order;
 
-        public OdrerJSON(long orderId, Order order) {
-            this.orderId = orderId;
-            this.order = order;
-        }
-
-        public long getOrderId() {
-            return orderId;
-        }
-
-        public void setOrderId(long orderId) {
-            this.orderId = orderId;
-        }
-
-        public Order getOrder() {
-            return order;
-        }
-
-        public void setOrder(Order order) {
-            this.order = order;
-        }
-    }
 }

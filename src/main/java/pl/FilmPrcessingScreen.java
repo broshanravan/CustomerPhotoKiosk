@@ -1,7 +1,6 @@
 package pl;
 
 import bl.ProcessFilmDevelopmentOrder;
-import bl.ProcessOtherOrders;
 import bl.beens.Customer;
 import bl.beens.FilmProcessingOrder;
 import bl.enums.FilmType;
@@ -512,7 +511,7 @@ public class FilmPrcessingScreen extends JFrame {
 
                 try{
                     depoisit =  Integer.parseInt(totalFld.getText());
-                    filmProcessingOrder.setDepoisite(depoisit);
+                    filmProcessingOrder.setDeposit(depoisit);
 
                 } catch(NumberFormatException nfe){
                     valid = false;
