@@ -2,7 +2,7 @@ package bl.beens;
 
 public class Customer {
 
-    private int customerId;
+    private long customerId;
     private String name;
     private String mobileNum;
 
@@ -16,7 +16,7 @@ public class Customer {
 
     }
 
-    public Customer(String name, String mobileNum, String email, int customerId) {
+    public Customer(String name, String mobileNum, String email, long customerId) {
         this.customerId =customerId;
         this.name = name;
         this.mobileNum = mobileNum;
@@ -57,11 +57,11 @@ public class Customer {
         return email;
     }
 
-    public int getCustomerId() {
+    public long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(long customerId) {
         this.customerId = customerId;
     }
 

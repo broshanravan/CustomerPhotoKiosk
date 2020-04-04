@@ -1,11 +1,8 @@
 package dl;
 
 import bl.beens.Customer;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.PreparedStatement;
+
+import java.sql.*;
 
 public class CustomerInventoryImpl implements CustomerInventory {
 
@@ -13,7 +10,7 @@ public class CustomerInventoryImpl implements CustomerInventory {
     private boolean hasData = false;
 
     public CustomerInventoryImpl(){
-        if(con == null){
+        if(!isConnectionValid()){
             getConnection();
         }
     }
@@ -21,6 +18,9 @@ public class CustomerInventoryImpl implements CustomerInventory {
 
     public Customer findCustomer(String email){
         Customer customer = new Customer();
+        if (!isConnectionValid()){
+            getConnection();
+        }
         try {
 
             String findQuery ="SELECT * FROM CUSTOMER_INVENTORY c WHERE c.CUSTOMER_EMAIL = '" + email + "'";
@@ -35,13 +35,52 @@ public class CustomerInventoryImpl implements CustomerInventory {
             }
         }catch(java.sql.SQLException jse){
             jse.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch(java.sql.SQLException jse){
+                jse.printStackTrace();
+            }
         }
 
         return customer;
     }
 
+
+    /**
+     * To read all records in the
+     * Database
+     */
+    public void showAllCustomers(){
+        if (!isConnectionValid()){
+            getConnection();
+        }
+        try {
+
+            String findQuery ="SELECT * FROM CUSTOMER_INVENTORY";
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(findQuery);
+            while (rs.next()) {
+                System.out.print("ID: " + rs.getInt(1));
+                System.out.print(", name: " + rs.getString(2));
+                System.out.print(", Phone:" + rs.getString(3));
+                System.out.println(", email: " + rs.getString(4));
+            }
+        }catch(java.sql.SQLException jse){
+            jse.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch(java.sql.SQLException jse){
+                jse.printStackTrace();
+            }
+        }
+
+
+    }
+
     public boolean customerExists(String email){
-        if (con == null){
+        if (!isConnectionValid()){
             getConnection();
         }
         boolean exists = false;
@@ -54,55 +93,78 @@ public class CustomerInventoryImpl implements CustomerInventory {
             }
         }catch(java.sql.SQLException jse){
             jse.printStackTrace();
+            exists = true;
+        }finally {
+            try {
+                con.close();
+            } catch(java.sql.SQLException jse){
+                jse.printStackTrace();
+            }
         }
+
 
         return exists;
 
     }
 
     public void insertCustomer(Customer customer){
-        if (con == null){
+        if (!isConnectionValid()){
             getConnection();
         }
         try {
-            String saveQuery ="Insert into CUSTOMER_INVENTORY values(?,?,?,?);";
+
+            String saveQuery ="Insert into CUSTOMER_INVENTORY (CUSTOMER_NAME,CUSTOMER_PHONE_NUMBER, CUSTOMER_EMAIL) values(?,?,?);";
             PreparedStatement preparedStatement = con.prepareStatement(saveQuery);
 
-            preparedStatement.setString(2, customer.getName() );
-            preparedStatement.setString(3, customer.getMobileNum() );
-            preparedStatement.setString(4, customer.getEmail() );
-
+            preparedStatement.setString(1, customer.getName() );
+            preparedStatement.setString(2, customer.getMobileNum() );
+            preparedStatement.setString(3, customer.getEmail() );
 
             preparedStatement.execute();
 
         }catch(java.sql.SQLException jse){
             jse.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch(java.sql.SQLException jse){
+                jse.printStackTrace();
+            }
         }
 
 
     }
 
     public void updateCustomer(Customer customer){
-        if (con == null){
+        if (!isConnectionValid()){
             getConnection();
         }
         try {
             String saveQuery =  " UPDATE CUSTOMER_INVENTORY set" +
                                 " CUSTOMER_NAME = ?," +
-                                " CUSTOMER_PHONE_NUMBER = ?" +
-                                " WHERE  CUSTOMER_EMAIL = ?";
+                                " CUSTOMER_PHONE_NUMBER = ?," +
+                                " CUSTOMER_EMAIL = ?," +
+                                " WHERE CUSTOMER_ID = " + customer.getCustomerId();
             PreparedStatement preparedStatement = con.prepareStatement(saveQuery);
 
             preparedStatement.setString(1, customer.getName() );
             preparedStatement.setString(2, customer.getMobileNum());
             preparedStatement.setString(3, customer.getEmail());
 
+            System.out.println("Cusromer to be updated details in inventory:");
 
             preparedStatement.executeUpdate();
 
         }catch(java.sql.SQLException jse){
             jse.printStackTrace();
+        }finally {
+            try {
+                con.close();
+            } catch(java.sql.SQLException jse){
+                jse.printStackTrace();
+            }
         }
+
 
     }
 
@@ -116,6 +178,7 @@ public class CustomerInventoryImpl implements CustomerInventory {
         }
 
     }
+
     private void getConnection(){
         try {
             Class.forName("org.sqlite.JDBC");
@@ -126,6 +189,23 @@ public class CustomerInventoryImpl implements CustomerInventory {
         }catch(java.sql.SQLException jse){
             jse.printStackTrace();
         }
+
+    }
+
+    private boolean isConnectionValid() {
+
+        if (con == null) {
+            return false;
+        } else {
+            try {
+                if (con.isClosed()) {
+                    return false;
+                }
+            } catch (SQLException sqle) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void initialize(){
@@ -160,7 +240,11 @@ public class CustomerInventoryImpl implements CustomerInventory {
         }
 
     }
-    
+
+    public static void main(String[] args){
+        CustomerInventoryImpl customerInventoryImpl = new CustomerInventoryImpl();
+        customerInventoryImpl.showAllCustomers();
+    }
 }
 
 

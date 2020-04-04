@@ -4,7 +4,7 @@ import bl.beens.FilmProcessingOrder;
 
 public interface FilmProceccingOrderInventory {
 
-    public FilmProcessingOrder getProcessingOrder(long orderNumber);
+    public FilmProcessingOrder retrieveProcessingOrder(long orderNumber);
 
     public long saveProcessingOrder(FilmProcessingOrder order);
 }

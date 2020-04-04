@@ -4,14 +4,16 @@ import bl.beens.FilmProcessingOrder;
 import bl.enums.FilmType;
 
 import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInventory{
     Connection con = null;
     private boolean hasData = false;
 
-    public FilmProcessingOrder getProcessingOrder(long orderNumber){
+    public FilmProcessingOrder retrieveProcessingOrder(long orderNumber){
         FilmProcessingOrder filmProcessingOrder = new FilmProcessingOrder();
-        if (con == null){
+        if (!isConnectionValid()){
             getConnection();
         }
         try {
@@ -46,25 +48,65 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
             }
         }catch(java.sql.SQLException jse){
             jse.printStackTrace();
+        }finally {
+            try {
+                con.close();
+            } catch(java.sql.SQLException jse){
+                jse.printStackTrace();
+            }
         }
 
         return filmProcessingOrder;
 
     }
 
-    private long getLatestOrderNum(){
+    public void closeFilmProcessingOrde(long orderId){
+        if (!isConnectionValid()){
+            getConnection();
+        }
+        try {
+            String updateQuery = "UPDATE FILM_PRECESS_ORDERS SET" +
+                    " COMPLETED_CLOSED = Y" +
+                    " WHERE ORDER_ID =" + orderId;
+
+            Statement statement = con.createStatement();
+
+            statement.executeQuery(updateQuery);
+
+
+
+
+        }catch(java.sql.SQLException jse){
+            jse.printStackTrace();
+        }finally {
+            try {
+                con.close();
+            } catch(java.sql.SQLException jse){
+                jse.printStackTrace();
+            }
+        }
+    }
+
+    private long getLastOrderNumber(){
         long orderNum = 0;
-        if (con == null){
+        if (!isConnectionValid()){
             getConnection();
         }
         try {
             String grtMaxQuery = "SELECT MAX(ORDER_NUMBER) from FILM_PRECESS_ORDERS ";
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(grtMaxQuery);
+
             orderNum =  rs.getLong(1);
 
         } catch(java.sql.SQLException jse){
             jse.printStackTrace();
+        }finally {
+            try {
+                con.close();
+            } catch(java.sql.SQLException jse){
+                jse.printStackTrace();
+            }
         }
 
         return orderNum;
@@ -72,7 +114,7 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
 
     public long saveProcessingOrder(FilmProcessingOrder order){
         long orderNum = 0;
-        if (con == null){
+        if (!isConnectionValid()){
             getConnection();
         }
         try {
@@ -119,10 +161,16 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
 
             preparedStatement.execute();
 
-            orderNum = this.getLatestOrderNum();
+            orderNum = this.getLastOrderNumber();
 
         }catch(java.sql.SQLException jse){
             jse.printStackTrace();
+        }finally {
+            try {
+                con.close();
+            } catch(java.sql.SQLException jse){
+                jse.printStackTrace();
+            }
         }
 
         return orderNum;
@@ -163,6 +211,7 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
                             " BORDER_TYPE varchar2(20)," +
                             " PRINT_TIME varchar2(20)," +
                             " FILM_TYPE varchar2(20)," +
+                            " COMPLETED_CLOSED varchar2(20)," +
                             " COLOR varchar2(20)," +
                             " NUMBER_OF_COPIES number," +
                             " FILM_SIZE varchar2(20)," +
@@ -186,6 +235,60 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
 
     }
 
+    public List<String> getAllOrderNumbers(){
+        List<String> emailsList = new LinkedList<String>();
+
+        if (con == null){
+            getConnection();
+        }
+        try {
+            String grtMaxQuery = "SELECT CUSTOMER_EMAIL from FILM_PRECESS_ORDERS ";
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(grtMaxQuery);
+            while (rs.next()) {
+                String orderNum = rs.getString(1);
+                emailsList.add(orderNum);
+            }
+
+
+        } catch(java.sql.SQLException jse){
+            jse.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch(java.sql.SQLException jse){
+                jse.printStackTrace();
+            }
+        }
+
+        return emailsList;
+    }
+
+    private boolean isConnectionValid() {
+
+        if (con == null) {
+            return false;
+        } else {
+            try {
+                if (con.isClosed()) {
+                    return false;
+                }
+            } catch (SQLException sqle) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args){
+        FilmProceccingOrderInventoryImpl filmProceccingOrderInv = new FilmProceccingOrderInventoryImpl();
+        List<String> emailsList = filmProceccingOrderInv.getAllOrderNumbers();
+        int i = 1;
+        for (String orderNumber : emailsList){
+            System.out.println("orderNumber_" + i + " = "+ orderNumber);
+            i++;
+        }
+    }
 
 
 

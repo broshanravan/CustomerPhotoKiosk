@@ -15,16 +15,17 @@ public class ProcessFilmDevelopmentOrder {
 
     FilmProceccingOrderInventory filmProceccingOrderInventory= new FilmProceccingOrderInventoryImpl();
 
-    public void saveFilmProcessingOrder(FilmProcessingOrder order, Customer customer){
+    public long saveFilmProcessingOrder(FilmProcessingOrder order, Customer customer){
 
         customerInventory.saveCustomer(customer);
-        filmProceccingOrderInventory.saveProcessingOrder(order);
+        long orderId = filmProceccingOrderInventory.saveProcessingOrder(order);
+        return orderId;
 
     }
 
 
     public FilmProcessingOrder getFilmProcessingOrder(long OrderNumber){
-        FilmProcessingOrder filmProcessingOrder = filmProceccingOrderInventory.getProcessingOrder(OrderNumber);
+        FilmProcessingOrder filmProcessingOrder = filmProceccingOrderInventory.retrieveProcessingOrder(OrderNumber);
 
         return filmProcessingOrder;
 

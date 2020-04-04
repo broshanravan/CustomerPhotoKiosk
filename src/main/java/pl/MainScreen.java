@@ -10,7 +10,6 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 public class MainScreen extends JFrame {
 
@@ -21,10 +20,8 @@ public class MainScreen extends JFrame {
     JButton PhotoGiftBtn = new JButton("Photo Gift");
     JButton engravingBtn = new JButton("Engraving");
 
-    ImageIcon logo = new ImageIcon("C:\\Users\\Behrooz\\Mainworkspace\\CustomerPhotoKiosk\\logos\\KodakLogo.jpg");
-    String fileName = "C:\\Users\\Behrooz\\Mainworkspace\\CustomerPhotoKiosk\\logos\\KodakLogo.jpg";
-    URL url = getClass().getResource(fileName);
-    //("logos\\KodakLogo.jpg");
+
+    String fileName = "./logos/KodakLogo.jpg";
 
     ButtonListener buttonListener = new ButtonListener();
 
@@ -78,18 +75,21 @@ public class MainScreen extends JFrame {
     }
 
     private class ButtonListener implements ActionListener {
-        FilmPrcessingScreen filmPrcessingScreen = new FilmPrcessingScreen();
-        EngravingScreen engravingScreen = new EngravingScreen();
-        PhotoGiftScreen photoGiftScreen = new PhotoGiftScreen();
+
+
+
         public void actionPerformed(ActionEvent e) {
             if (e.getActionCommand().equals("Film Processing")) {
-                filmPrcessingScreen.setupScreen();
-                filmPrcessingScreen.setVisible(true);
+                FilmProcessingScreen filmProcessingScreen = new FilmProcessingScreen();
+                filmProcessingScreen.setupScreen();
+                filmProcessingScreen.setVisible(true);
             } else if (e.getActionCommand().equals("Photo Gift")) {
+                PhotoGiftScreen photoGiftScreen = new PhotoGiftScreen();
                 photoGiftScreen.setupScreen();
                 photoGiftScreen.setVisible(true);
 
             }  else if (e.getActionCommand().equals("Engraving")) {
+                EngravingScreen engravingScreen = new EngravingScreen();
                 engravingScreen.setupScreen();
                 engravingScreen.setVisible(true);
             }
