@@ -1,7 +1,6 @@
 package dl;
 
 import bl.beens.Customer;
-import bl.beens.Order;
 
 public interface CustomerInventory {
 

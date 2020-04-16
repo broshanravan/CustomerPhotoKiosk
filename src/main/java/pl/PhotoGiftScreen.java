@@ -1,12 +1,11 @@
 package pl;
 
+import bl.ProcessOtherOrders;
 import bl.beens.Customer;
-import bl.beens.Order;
+import bl.beens.OtherOrderTypes;
 import bl.enums.OrderType;
 import dl.CustomerInventory;
 import dl.CustomerInventoryImpl;
-import dl.OrderInventory;
-import dl.OrderInventoryImpl;
 import org.jdatepicker.impl.DateComponentFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -43,15 +42,19 @@ public class PhotoGiftScreen  extends JFrame {
     private String adminInstruction;
     String joType;
 
-    private Date collectionDate;
+    //private Date collectionDate;
+    ProcessOtherOrders processOtherOrders = new ProcessOtherOrders();
+    Customer customer = null;
 
-    OrderInventory orderInventory = new OrderInventoryImpl();
 
-    DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+
+    DateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");
 
     double totalPrice =0;
     double deposit = 0;
     double balance = 0;
+    double  vat = 0;
+    double grandTotal =0;
 
 
     JLabel newCustomerLbl = new JLabel("This is a new customer");
@@ -82,9 +85,11 @@ public class PhotoGiftScreen  extends JFrame {
 
     JLabel totaLbl = new JLabel("Total Price : £");
     JLabel depositeLbl = new JLabel("Deposit :      £");
+    JLabel vatLbl = new JLabel("VAT 17.5% :   £");
     JLabel toPayLbl = new JLabel("Left to Pay : £");
 
     JTextField totalFld = new JTextField();
+    JTextField vatFld = new JTextField();
     JTextField depositFld = new JTextField();
     JTextField toPayFld = new JTextField();
 
@@ -92,7 +97,6 @@ public class PhotoGiftScreen  extends JFrame {
 
     JButton cancelBtn =new JButton("Cancel");
     JButton printBtn =new JButton("Print");
-    //JButton printLblBtn =new JButton("Print Label");
     JButton searchBtn = new JButton("Search Details");
 
     JDatePickerImpl datePicker = null;
@@ -128,7 +132,6 @@ public class PhotoGiftScreen  extends JFrame {
 
         getContentPane().add(custFillLbl);
         custFillLbl.setOpaque(false);
-        //Font labelFont = custFillLbl.getFont();
 
         custFillLbl.setFont(new Font("Serif", Font.BOLD, 18));
         custFillLbl.setBounds(20,120,200,25);
@@ -187,9 +190,6 @@ public class PhotoGiftScreen  extends JFrame {
         custInstructionArea.setBorder( BorderFactory.createLineBorder(Color.BLACK));
         custInstructionArea.setBounds(60,370,660,100);
 
-        //getContentPane().add(printLblBtn);
-        //printLblBtn.setBounds(620,480,100,25);
-
 
         getContentPane().add(adminFillLbl);
         adminFillLbl.setFont(new Font("Serif", Font.BOLD, 18));
@@ -223,6 +223,7 @@ public class PhotoGiftScreen  extends JFrame {
         jobTypeCombo.setBounds(120,600,200,25);
 
 
+
         getContentPane().add(totaLbl);
         totaLbl.setOpaque(false);
         totaLbl.setBounds(500,540,100,25);
@@ -230,22 +231,33 @@ public class PhotoGiftScreen  extends JFrame {
         getContentPane().add(totalFld);
         totalFld.setBounds(600,540,120,25);
 
+        getContentPane().add(vatLbl);
+        vatLbl.setBounds(500, 570, 100, 25);
+        vatLbl.setOpaque(false);
+
+        getContentPane().add(vatFld);
+        vatFld.setBounds(600, 570, 120, 25);
+        vatFld.setEditable(false);
+
+        vatFld.setForeground(Color.black);
+        vatFld.setBackground(Color.white);
+
         getContentPane().add(depositeLbl);
         depositeLbl.setOpaque(false);
-        depositeLbl.setBounds(500,570,100,25);
+        depositeLbl.setBounds(500,600,100,25);
 
         getContentPane().add(depositFld);
-        depositFld.setBounds(600,570,120,25);
+        depositFld.setBounds(600,600,120,25);
 
         getContentPane().add(toPayLbl);
         toPayLbl.setOpaque(false);
-        toPayLbl.setBounds(500,600,100,25);
+        toPayLbl.setBounds(500,630,100,25);
 
         getContentPane().add(toPayFld);
         toPayFld.setEditable(false);
         toPayFld.setForeground(Color.black);
         toPayFld.setBackground(Color.white);
-        toPayFld.setBounds(600,600,120,25);
+        toPayFld.setBounds(600,630,120,25);
 
 
         getContentPane().add(adminInstructionLbl);
@@ -269,18 +281,17 @@ public class PhotoGiftScreen  extends JFrame {
         cancelBtn.addActionListener(buttonListener);
         searchBtn.addActionListener(buttonListener);
 
-
         addDepositFieldsListeners();
         addTotalPriceFieldsListeners();
 
     }
 
+
     private void findCustomer(){
 
-        CustomerInventory customerInventory = new CustomerInventoryImpl();
         String customerEmail = emailFld.getText();
         if(customerEmail != null && !"".equalsIgnoreCase(customerEmail)){
-            Customer customer = customerInventory.findCustomer(customerEmail);
+            customer = customerInventory.findCustomer(customerEmail);
             customer.displayCustomerDetails();
             if(customer.getMobileNum() != null &&  !"".equalsIgnoreCase(customer.getMobileNum())){
                 telFld.setText(customer.getMobileNum());
@@ -298,20 +309,21 @@ public class PhotoGiftScreen  extends JFrame {
 
     }
 
+
     private long savePhotoGiftOrder(){
         long orderNumber = 0;
         if(isFormDataValid()){
             String customerInstruction = custInstructionArea.getText();
             String aminInstruction = adminInstructionArea.getText();
-
             String jobType = jobTypeCombo.getSelectedItem().toString();
-            String customerName =  nameFld.getName();
+
+            String customerName =  nameFld.getText();
             String customerEmail = emailFld.getText();
-            String telephone = telFld.getToolTipText();
+            String telephone = telFld.getText();
 
             Date collectionDate  =  (Date) datePicker.getModel().getValue();
 
-            Order photoGiftOrder = new Order(
+            OtherOrderTypes photoGiftOrder = new OtherOrderTypes(
                     customerEmail,
                     OrderType.PhotoGift,
                     customerInstruction,
@@ -319,14 +331,16 @@ public class PhotoGiftScreen  extends JFrame {
                     collectionDate,
                     totalPrice,
                     deposit,
-                    balance
+                    balance,
+                    jobType
             );
 
             Customer customer = new Customer(customerName,  telephone, customerEmail) ;
 
-            orderNumber = orderInventory.saveOrder(photoGiftOrder);
-            customerInventory.saveCustomer(customer);
-            JOptionPane.showMessageDialog(this, "Your orderId is: " + orderNumber);
+            orderNumber =processOtherOrders.saveOrder(photoGiftOrder, customer);
+
+
+            JOptionPane.showMessageDialog(this, "Your order has been saved with order number: " + orderNumber );
             this.setVisible(false);
         }
 
@@ -369,11 +383,21 @@ public class PhotoGiftScreen  extends JFrame {
                 } else {
                     totalFld.setBorder(BorderFactory.createLineBorder(Color.black));
                     if(isDepositFieldsValid()){
-                        if(deposit < totalPrice){
+
+                        vat = totalPrice * 0.175;
+                        vat = Math.floor(vat * 100) / 100;
+                        grandTotal = totalPrice + vat;
+                        if(deposit < grandTotal){
                             depositFld.setBorder(BorderFactory.createLineBorder(Color.black));
                         }
-                        balance = totalPrice - deposit;
+
+                        balance = grandTotal  - deposit;
+                        System.out.println("grandTotal = " + grandTotal);
+                        //System.out.println("");
+
                         balance = Math.floor(balance * 100) / 100;
+                        System.out.println("balance = " + balance);
+                        vatFld.setText(String.valueOf(vat));
                         toPayFld.setText(String.valueOf(balance));
                     }
                 }
@@ -401,10 +425,15 @@ public class PhotoGiftScreen  extends JFrame {
                     depositFld.setBorder(BorderFactory.createLineBorder(Color.red));
                 }else{
                     depositFld.setBorder(BorderFactory.createLineBorder(Color.black));
+                    if("".equalsIgnoreCase(depositFld.getText().trim())){
+                        deposit = 0;
+                    }
                     if(isTotalFieldsValid()){
-                        balance = totalPrice - deposit;
+                        vat = Math.floor(vat * 100) / 100;
+                        balance = totalPrice  + vat - deposit;
                         balance = Math.floor(balance * 100) / 100;
-                        if(deposit > totalPrice){
+                        if(deposit > totalPrice * 1.175){
+                            System.err.println("deposit field listener failed" );
                             depositFld.setBorder(BorderFactory.createLineBorder(Color.red));
                         } else {
                             toPayFld.setText(String.valueOf(balance));
@@ -415,7 +444,6 @@ public class PhotoGiftScreen  extends JFrame {
             }
         });
 
-
     }
 
     private boolean isTotalFieldsValid() {
@@ -425,13 +453,19 @@ public class PhotoGiftScreen  extends JFrame {
         } else {
             try {
                 totalPrice = Double.parseDouble(totalFld.getText());
-                if(deposit > totalPrice){
+                vat = totalPrice * 0.175;
+                grandTotal =
+                        vat = Math.floor(vat * 100) / 100;
+                grandTotal = totalPrice + vat;
+                System.out.println("grandTotal =" + grandTotal);
+                System.out.println("deposit =" + deposit);
+                if(deposit > grandTotal){
                     depositFld.setBorder(BorderFactory.createLineBorder(Color.red));
+                    System.err.println("totalfieldvalid failed" );
                     isValid = false;
                 } else {
                     depositFld.setBorder(BorderFactory.createLineBorder(Color.black));
                 }
-
             } catch (NumberFormatException nfe) {
                 isValid = false;
                 //totalFld.getHighlighter().addHighlight(1,1,   Highlighter.Highlight.getPainter());

@@ -23,6 +23,14 @@ public class ProcessFilmDevelopmentOrder {
 
     }
 
+    public void updateFilmProcessingOrder(FilmProcessingOrder order, Customer customer){
+
+        customerInventory.saveCustomer(customer);
+        long orderId = filmProceccingOrderInventory.saveProcessingOrder(order);
+
+
+    }
+
 
     public FilmProcessingOrder getFilmProcessingOrder(long OrderNumber){
         FilmProcessingOrder filmProcessingOrder = filmProceccingOrderInventory.retrieveProcessingOrder(OrderNumber);

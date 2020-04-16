@@ -34,8 +34,10 @@ public class FilmProcessingScreen extends  JDialog{
     private int hight = 900;
 
     double totalPrice =0;
+    double  vat = 0;
     double deposit = 0;
     double balance = 0;
+    double grandTotal =0;
 
     String printSize ;
     String borderType ;
@@ -44,7 +46,7 @@ public class FilmProcessingScreen extends  JDialog{
     String filmSize;
     int numberOfCopies;
 
-    DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+    DateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");
 
     JLabel nameLbl = new JLabel("NAME:");
     JLabel emailLbl = new JLabel("Email:");
@@ -62,6 +64,7 @@ public class FilmProcessingScreen extends  JDialog{
 
 
     JLabel totalLbl = new JLabel("Total Price :     £");
+    JLabel vatlLbl = new JLabel("VAT 17.5% :     £");
     JLabel depositLbl = new JLabel("Deposit :          £");
     JLabel toPayLbl = new JLabel("Balance :         £");
 
@@ -78,12 +81,13 @@ public class FilmProcessingScreen extends  JDialog{
 
 
     JTextField totalFld = new JTextField();
+    JTextField vatFld = new JTextField();
     JTextField depositFld = new JTextField();
     JTextField toPayFld = new JTextField();
 
 
     JRadioButton film6x4Radio = new JRadioButton("6 x 4\" (10x15)");
-    JRadioButton film5x74Radio = new JRadioButton("5 x 7\" (15x85)");
+    JRadioButton film5x7Radio = new JRadioButton("5 x 7\" (15x85)");
     JRadioButton film6x8Radio = new JRadioButton("6 x 8\" (15x120)");
 
 
@@ -141,13 +145,9 @@ public class FilmProcessingScreen extends  JDialog{
         setAlwaysOnTop(true);
         getContentPane().setBackground(new Color(255, 255, 242));
         this.setLayout(null);
-        Dimension d = new Dimension(width, hight);
+        //Dimension d = new Dimension(width, hight);
         this.setSize(width, hight);
         setResizable(false);
-
-
-        /*************************************************************** Adding Kodak logo to Panel **********************************************************************************/
-
 
         BufferedImage KodakLogo = null;
         try {
@@ -245,15 +245,15 @@ public class FilmProcessingScreen extends  JDialog{
         film6x4Radio.setBounds(20, 380, 120, 25);
         film6x4Radio.setOpaque(false);
 
-        getContentPane().add(film5x74Radio);
-        film5x74Radio.setBounds(20, 430, 120, 25);
-        film5x74Radio.setOpaque(false);
+        getContentPane().add(film5x7Radio);
+        film5x7Radio.setBounds(20, 430, 120, 25);
+        film5x7Radio.setOpaque(false);
 
 
         printSizeGroup.add(film6x8Radio);
         film6x8Radio.setSelected(true);
         printSizeGroup.add(film6x4Radio);
-        printSizeGroup.add(film5x74Radio);
+        printSizeGroup.add(film5x7Radio);
 
         /** Border radio group*/
         getContentPane().add(borderLbl);
@@ -404,10 +404,20 @@ public class FilmProcessingScreen extends  JDialog{
 
 
         getContentPane().add(totalLbl);
-        totalLbl.setBounds(450, 670, 100, 25);
+        totalLbl.setBounds(450, 640, 100, 25);
 
         getContentPane().add(totalFld);
-        totalFld.setBounds(550, 670, 100, 25);
+        totalFld.setBounds(550, 640, 100, 25);
+
+        getContentPane().add(vatlLbl);
+        vatlLbl.setBounds(450, 670, 100, 25);
+        vatFld.setEditable(false);
+
+        getContentPane().add(vatFld);
+        vatFld.setBounds(550, 670, 100, 25);
+
+        vatFld.setForeground(Color.black);
+        vatFld.setBackground(Color.white);
 
         getContentPane().add(depositLbl);
         depositLbl.setBounds(450, 700, 100, 25);
@@ -439,6 +449,7 @@ public class FilmProcessingScreen extends  JDialog{
 
 
         String border = "";
+
         for (int i = 0; i < 245; i++) {
             border = border + "-";
         }
@@ -468,6 +479,182 @@ public class FilmProcessingScreen extends  JDialog{
     }
 
 
+    public void addOtherFieldListener(){
+        otherFld.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            public void warn() {
+                if (!isOtherFieldValid()) {
+                    otherFld.setBorder(BorderFactory.createLineBorder(Color.red));
+                } else {
+                    otherFld.setBorder(BorderFactory.createLineBorder(Color.black));
+                }
+            }
+        });
+
+    }
+
+    public void addTotalPriceFieldsListeners() {
+
+        totalFld.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            public void warn() {
+                if (!isTotalFieldsValid()) {
+                    totalFld.setBorder(BorderFactory.createLineBorder(Color.red));
+                } else {
+                    totalFld.setBorder(BorderFactory.createLineBorder(Color.black));
+                    if(isDepositFieldsValid()){
+
+                        vat = totalPrice * 0.175;
+                        vat = Math.floor(vat * 100) / 100;
+                        grandTotal = totalPrice + vat;
+                        if(deposit < grandTotal){
+                            depositFld.setBorder(BorderFactory.createLineBorder(Color.black));
+                        }
+
+                        balance = grandTotal  - deposit;
+
+                        balance = Math.floor(balance * 100) / 100;
+
+                        vatFld.setText(String.valueOf(vat));
+                        toPayFld.setText(String.valueOf(balance));
+                    }
+                }
+            }
+        });
+
+    }
+
+    public void addDepositFieldsListeners() {
+        depositFld.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            public void warn() {
+                if (!isDepositFieldsValid()) {
+                    depositFld.setBorder(BorderFactory.createLineBorder(Color.red));
+                }else{
+                    depositFld.setBorder(BorderFactory.createLineBorder(Color.black));
+                    if("".equalsIgnoreCase(depositFld.getText().trim())){
+                        deposit = 0;
+                    }
+                    if(isTotalFieldsValid()){
+                        vat = Math.floor(vat * 100) / 100;
+                        balance = totalPrice  + vat - deposit;
+                        balance = Math.floor(balance * 100) / 100;
+                        if(deposit > totalPrice * 1.175){
+                            System.err.println("depost fieldd listener failed" );
+                            depositFld.setBorder(BorderFactory.createLineBorder(Color.red));
+                        } else {
+                            toPayFld.setText(String.valueOf(balance));
+                        }
+                    }
+                }
+
+            }
+        });
+
+
+    }
+
+    private boolean isTotalFieldsValid() {
+        boolean isValid = true;
+        if (totalFld.getText() == null || "".equalsIgnoreCase(totalFld.getText().trim())) {
+            isValid = false;
+        } else {
+            try {
+                totalPrice = Double.parseDouble(totalFld.getText());
+                vat = totalPrice * 0.175;
+                vat = Math.floor(vat * 100) / 100;
+                grandTotal = totalPrice + vat;
+                System.out.println("grandTotal =" + grandTotal);
+                System.out.println("deposit =" + deposit);
+                if(deposit > grandTotal){
+                    depositFld.setBorder(BorderFactory.createLineBorder(Color.red));
+                    System.err.println("totalfieldvalid failed" );
+                    isValid = false;
+                } else {
+                    depositFld.setBorder(BorderFactory.createLineBorder(Color.black));
+                }
+            } catch (NumberFormatException nfe) {
+                isValid = false;
+                //totalFld.getHighlighter().addHighlight(1,1,   Highlighter.Highlight.getPainter());
+            }
+
+
+        }
+        return isValid;
+    }
+
+    private boolean isDepositFieldsValid() {
+        boolean isValid = true;
+        if (depositFld.getText() != null && !"".equalsIgnoreCase(depositFld.getText().trim())) {
+
+            try {
+                deposit = Double.parseDouble(depositFld.getText());
+
+            } catch (NumberFormatException nfe) {
+                isValid = false;
+            }
+
+        }
+
+        return isValid;
+    }
+
+    private boolean isOtherFieldValid(){
+        boolean isValid =true;
+        if (otherRadio.isSelected()){
+            String otherString =otherFld.getText();
+            if (otherString ==null|| "".equalsIgnoreCase(otherString.trim())){
+                isValid = false;
+                otherFld.setBorder(BorderFactory.createLineBorder(Color.red));
+            } else {
+                try{
+                    Integer.parseInt(otherString);
+                    otherFld.setBorder(BorderFactory.createLineBorder(Color.black));
+                } catch (NumberFormatException e){
+                    isValid = false;
+                    otherFld.setBorder(BorderFactory.createLineBorder(Color.red));
+                }
+            }
+
+        }
+        return isValid;
+    }
+
+
+    /*
     public void addOtherFieldListener(){
         otherFld.getDocument().addDocumentListener(new DocumentListener() {
             public void changedUpdate(DocumentEvent e) {
@@ -623,6 +810,9 @@ public class FilmProcessingScreen extends  JDialog{
         return isValid;
     }
 
+    */
+
+
     private void findCustomer() {
 
         CustomerInventory customerInventoryImpl = new CustomerInventoryImpl();
@@ -741,12 +931,12 @@ public class FilmProcessingScreen extends  JDialog{
 
     private void getPrintSize(){
 
-        if (film6x8Radio.isSelected()){
-            printSize = "6 x 4\" (10x15";
-        } else if (film6x4Radio.isSelected()){
-            printSize = "5 x 7\" (15x85)";
-        } else if (film5x74Radio.isSelected()) {
-            printSize = "6 x 8\" (15x120";
+        if (film6x4Radio.isSelected()){
+            printSize = "6 x 4\"";
+        } else if (film5x7Radio.isSelected()){
+            printSize = "5 x 7\"";
+        } else if (film6x8Radio.isSelected()) {
+            printSize = "6 x 8\"";
         }
 
     }
@@ -755,11 +945,11 @@ public class FilmProcessingScreen extends  JDialog{
 
 
         if (withBorderRadio.isSelected()){
-            borderType = "\"With Border\"";
+            borderType = "With Border";
         } else if (noBorderRadio.isSelected()){
-            borderType = "\"No Border";
+            borderType = "No Border";
         } else if (glossyRadio.isSelected()) {
-            borderType = "\"Glossy\"0";
+            borderType = "Glossy";
         }
 
     }
@@ -796,15 +986,13 @@ public class FilmProcessingScreen extends  JDialog{
 
     private void getFilmSize(){
 
-
-        if (film6x8Radio.isSelected()){
-            filmSize= "6x8";
-        } else if (film6x4Radio.isSelected()){
-            filmSize= "6x4";;
-        } else if (film5x74Radio.isSelected()){
-            filmSize= "5x7";
+        if (hundred10Radio.isSelected()){
+            filmSize= "110";
+        } else if (hundred35Radio.isSelected()){
+            filmSize= "135";;
+        } else if (hundred20Radio.isSelected()){
+            filmSize= "120";
         }
-
 
     }
 
@@ -849,6 +1037,16 @@ public class FilmProcessingScreen extends  JDialog{
     private void saveOrder() {
 
         if (isFormDataValid() && arePaymentFieldsValid()) {
+
+            totalPrice =Double.parseDouble(totalFld.getText());
+            vat = totalPrice * 0.175;
+            vat = Math.floor(vat * 100) / 100;
+            grandTotal = totalPrice + vat;
+            deposit = Double.parseDouble(depositFld.getText());
+            balance = grandTotal  - deposit;
+            balance = Math.floor(balance * 100) / 100;
+
+
 
             String filmTypeStr = filmTypeCombo.getSelectedItem().toString();
 
@@ -897,15 +1095,13 @@ public class FilmProcessingScreen extends  JDialog{
 
 
             long orderId = processOtherOrders.saveFilmProcessingOrder(filmProcessingOrder, customer);
-            customerInventory.saveCustomer(customer);
+            //customerInventory.saveCustomer(customer);
             JOptionPane.showMessageDialog(this, "Your orderId is: " + orderId);
             this.setVisible(false);
 
         }
 
     }
-
-
 
     class ButtonListener implements ActionListener {
 
@@ -933,6 +1129,12 @@ public class FilmProcessingScreen extends  JDialog{
 
         }
 
+    }
+
+    public static void main(String[] args){
+        FilmProcessingScreen filmProcessingScreen  = new FilmProcessingScreen();
+        filmProcessingScreen.setupScreen();
+        filmProcessingScreen.setVisible(true);
     }
 
 

@@ -2,12 +2,12 @@ package pl;
 
 
 import bl.beens.Customer;
-import bl.beens.Order;
+import bl.beens.OtherOrderTypes;
 import bl.enums.OrderType;
 import dl.CustomerInventory;
 import dl.CustomerInventoryImpl;
-import dl.OrderInventory;
-import dl.OrderInventoryImpl;
+import dl.OtherOrdersInventory;
+import dl.OtherOrdersInventoryImpl;
 import org.jdatepicker.impl.DateComponentFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -34,7 +34,9 @@ public class EngravingScreen extends JFrame {
     private int width = 800;
     private int hight = 930;
 
-
+    private Customer customer;
+    private OtherOrderTypes otherOrder;
+    private FilmProcessingScreen filmProcessingScreen;
     private String customerEmail;
     private String customerName;
     private String customerPhoneNumber;
@@ -46,13 +48,17 @@ public class EngravingScreen extends JFrame {
 
     private Date collectionDate;
 
-    OrderInventory orderInventory = new OrderInventoryImpl();
+    OtherOrdersInventory otherOrdersInventory = new OtherOrdersInventoryImpl();
 
-    DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+
+    DateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");
 
     double totalPrice =0;
     double deposit = 0;
     double balance = 0;
+
+    double vat = 0;
+    double grandTotal =0;
 
 
     JLabel newCustomerLbl = new JLabel("This is a new customer");
@@ -82,10 +88,12 @@ public class EngravingScreen extends JFrame {
     JTextArea adminInstructionArea = new JTextArea();
 
     JLabel totaLbl = new JLabel("Total Price : £");
+    JLabel vatLbl = new JLabel("VAT 17.5% :   £");
     JLabel depositeLbl = new JLabel("Deposit :      £");
     JLabel toPayLbl = new JLabel("Left to Pay : £");
 
     JTextField totalFld = new JTextField();
+    JTextField vatFld = new JTextField();
     JTextField depositFld = new JTextField();
     JTextField toPayFld = new JTextField();
 
@@ -226,10 +234,21 @@ public class EngravingScreen extends JFrame {
 
         getContentPane().add(totaLbl);
         totaLbl.setOpaque(false);
-        totaLbl.setBounds(500,540,100,25);
+        totaLbl.setBounds(500,510,100,25);
 
         getContentPane().add(totalFld);
-        totalFld.setBounds(600,540,120,25);
+        totalFld.setBounds(600,510,120,25);
+
+        getContentPane().add(vatLbl);
+        vatLbl.setBounds(500, 540, 100, 25);
+        vatLbl.setOpaque(false);
+
+        getContentPane().add(vatFld);
+        vatFld.setBounds(600, 540, 120, 25);
+        vatFld.setEditable(false);
+
+        vatFld.setForeground(Color.black);
+        vatFld.setBackground(Color.white);
 
         getContentPane().add(depositeLbl);
         depositeLbl.setOpaque(false);
@@ -298,33 +317,35 @@ public class EngravingScreen extends JFrame {
 
     }
 
-    private long savePhotoGiftOrder(){
+    private long saveEngraingOrder(){
         long orderNumber = 0;
         if(isFormDataValid()){
             String customerInstruction = custInstructionArea.getText();
             String aminInstruction = adminInstructionArea.getText();
 
             String jobType = jobTypeCombo.getSelectedItem().toString();
-            String customerName =  nameFld.getName();
+            String customerName =  nameFld.getText();
             String customerEmail = emailFld.getText();
-            String telephone = telFld.getToolTipText();
+            String telephone = telFld.getText();
 
             Date collectionDate  =  (Date) datePicker.getModel().getValue();
 
-            Order photoGiftOrder = new Order(
+
+            OtherOrderTypes engravingOrder = new OtherOrderTypes(
                     customerEmail,
-                    OrderType.PhotoGift,
+                    OrderType.Engraving,
                     customerInstruction,
                     aminInstruction,
                     collectionDate,
                     totalPrice,
                     deposit,
-                    balance
+                    balance,
+                    jobType
             );
 
             Customer customer = new Customer(customerName,  telephone, customerEmail,customerId) ;
 
-            orderNumber = orderInventory.saveOrder(photoGiftOrder);
+            orderNumber = otherOrdersInventory.saveOrder(engravingOrder);
             customerInventory.saveCustomer(customer);
             JOptionPane.showMessageDialog(this, "Your orderId is: " + orderNumber);
             this.setVisible(false);
@@ -332,20 +353,6 @@ public class EngravingScreen extends JFrame {
 
 
         return orderNumber;
-    }
-
-    private class ButtonListener implements ActionListener {
-
-        public void actionPerformed(ActionEvent e) {
-            if (e.getActionCommand().equals("Print")) {
-                savePhotoGiftOrder();
-            } else if (e.getActionCommand().equals("Search Details")) {
-                findCustomer();
-            } else if (e.getActionCommand().equals("Cancel")) {
-                setVisible(false);
-            }
-        }
-
     }
 
     public void addTotalPriceFieldsListeners() {
@@ -369,11 +376,19 @@ public class EngravingScreen extends JFrame {
                 } else {
                     totalFld.setBorder(BorderFactory.createLineBorder(Color.black));
                     if(isDepositFieldsValid()){
-                        if(deposit < totalPrice){
+
+                        vat = totalPrice * 0.175;
+                        vat = Math.floor(vat * 100) / 100;
+                        grandTotal = totalPrice + vat;
+                        if(deposit < grandTotal){
                             depositFld.setBorder(BorderFactory.createLineBorder(Color.black));
                         }
-                        balance = totalPrice - deposit;
+
+                        balance = grandTotal  - deposit;
+
                         balance = Math.floor(balance * 100) / 100;
+
+                        vatFld.setText(String.valueOf(vat));
                         toPayFld.setText(String.valueOf(balance));
                     }
                 }
@@ -401,10 +416,15 @@ public class EngravingScreen extends JFrame {
                     depositFld.setBorder(BorderFactory.createLineBorder(Color.red));
                 }else{
                     depositFld.setBorder(BorderFactory.createLineBorder(Color.black));
+                    if("".equalsIgnoreCase(depositFld.getText().trim())){
+                        deposit = 0;
+                    }
                     if(isTotalFieldsValid()){
-                        balance = totalPrice - deposit;
+                        vat = Math.floor(vat * 100) / 100;
+                        balance = totalPrice  + vat - deposit;
                         balance = Math.floor(balance * 100) / 100;
-                        if(deposit > totalPrice){
+                        if(deposit > totalPrice * 1.175){
+                            System.err.println("depost fieldd listener failed" );
                             depositFld.setBorder(BorderFactory.createLineBorder(Color.red));
                         } else {
                             toPayFld.setText(String.valueOf(balance));
@@ -425,16 +445,22 @@ public class EngravingScreen extends JFrame {
         } else {
             try {
                 totalPrice = Double.parseDouble(totalFld.getText());
-                if(deposit > totalPrice){
+                vat = totalPrice * 0.175;
+                grandTotal =
+                        vat = Math.floor(vat * 100) / 100;
+                grandTotal = totalPrice + vat;
+                System.out.println("grandTotal =" + grandTotal);
+                System.out.println("deposit =" + deposit);
+                if(deposit > grandTotal){
                     depositFld.setBorder(BorderFactory.createLineBorder(Color.red));
+                    System.err.println("totalfieldvalid failed" );
                     isValid = false;
                 } else {
                     depositFld.setBorder(BorderFactory.createLineBorder(Color.black));
                 }
-
             } catch (NumberFormatException nfe) {
                 isValid = false;
-                //totalFld.getHighlighter().addHighlight(1,1,   Highlighter.Highlight.getPainter());
+
             }
 
 
@@ -542,9 +568,56 @@ public class EngravingScreen extends JFrame {
 
         }
 
-
         return isValid;
     }
 
+    public void populateScreen(){
 
+    }
+
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public OtherOrderTypes getOtherOrder() {
+        return otherOrder;
+    }
+
+    public void setOtherOrder(OtherOrderTypes otherOrder) {
+        this.otherOrder = otherOrder;
+    }
+
+    public FilmProcessingScreen getFilmProcessingScreen() {
+        return filmProcessingScreen;
+    }
+
+    public void setFilmProcessingScreen(FilmProcessingScreen filmProcessingScreen) {
+        this.filmProcessingScreen = filmProcessingScreen;
+    }
+
+    private class ButtonListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            if (e.getActionCommand().equals("Print")) {
+                saveEngraingOrder();
+            } else if (e.getActionCommand().equals("Cancel")) {
+                setVisible(false);
+            } else if (e.getActionCommand().equals("Search Details")) {
+                findCustomer();
+            }
+
+        }
+
+    }
+
+    public static void main(String[] srgs){
+        EngravingScreen sngravingScreen = new EngravingScreen();
+        sngravingScreen.setupScreen();
+        sngravingScreen.setVisible(true);
+    }
 }

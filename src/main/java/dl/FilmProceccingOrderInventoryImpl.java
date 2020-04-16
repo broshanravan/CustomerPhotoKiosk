@@ -11,6 +11,34 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
     Connection con = null;
     private boolean hasData = false;
 
+    public boolean filmProcessingOrderExists(long orderNumber){
+        boolean exists = false;
+        if (!isConnectionValid()){
+            getConnection();
+        }
+        try {
+
+            String orderCountSQL ="SELECT *FROM FILM_PRECESS_ORDERS WHERE ORDER_NUMBER = " + orderNumber;
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(orderCountSQL);
+           // int count = rs.getInt(1);
+            //System.out.println("Film Processing count for order id "+ orderNumber + " is:" + count);
+            if (rs.next()) {
+                exists = true;
+            }
+        }catch(java.sql.SQLException jse){
+            jse.printStackTrace();
+        }finally {
+            try {
+                con.close();
+            } catch(java.sql.SQLException jse){
+                jse.printStackTrace();
+            }
+        }
+
+        return exists;
+    }
+
     public FilmProcessingOrder retrieveProcessingOrder(long orderNumber){
         FilmProcessingOrder filmProcessingOrder = new FilmProcessingOrder();
         if (!isConnectionValid()){
@@ -31,7 +59,15 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
                 filmProcessingOrder.setPrintTime(rs.getString(7));
                 filmProcessingOrder.setFilmType(FilmType.valueOf(rs.getString(8)));
 
-                String color = rs.getString(9);
+
+                String  completed = rs.getString(9);
+                boolean isclosed = false;
+                if("Y".equalsIgnoreCase(completed)){
+                    isclosed = true;
+                }
+
+                filmProcessingOrder.setCompleted(isclosed);
+                String color = rs.getString(10);
 
                 boolean isColor =true;
                 if("N".equalsIgnoreCase(color)){
@@ -39,11 +75,12 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
                 }
                 filmProcessingOrder.setColor(isColor);
 
-                filmProcessingOrder.setNumberOfCopies(rs.getInt(10));
-                filmProcessingOrder.setFilmSize(rs.getString(11));
-                filmProcessingOrder.setTotalPrice(rs.getDouble(12));
-                filmProcessingOrder.setDeposit(rs.getDouble(13));
-                filmProcessingOrder.setBalance(rs.getDouble(14));
+                filmProcessingOrder.setNumberOfCopies(rs.getInt(11));
+                filmProcessingOrder.setFilmSize(rs.getString(12));
+                filmProcessingOrder.setTotalPrice(rs.getDouble(13));
+                filmProcessingOrder.setDeposit(rs.getDouble(14));
+                filmProcessingOrder.setBalance(rs.getDouble(15));
+
 
             }
         }catch(java.sql.SQLException jse){
@@ -60,7 +97,7 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
 
     }
 
-    public void closeFilmProcessingOrde(long orderId){
+    public void closeFilmProcessingOrder(long orderId){
         if (!isConnectionValid()){
             getConnection();
         }
@@ -113,6 +150,88 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
     }
 
     public long saveProcessingOrder(FilmProcessingOrder order){
+        long orderNum;
+
+        if(order.getOrderNum() != 0){
+            orderNum = order.getOrderNum();
+            updateFilmProcessingOrder(order);
+        } else{
+            orderNum = insertFilmProcessingOrder(order);
+        }
+
+        return orderNum;
+
+    }
+
+    public void updateFilmProcessingOrder(FilmProcessingOrder order) {
+        order.displayFilmProcessingOrder();
+
+
+        long orderNum = 0;
+        if (!isConnectionValid()) {
+            getConnection();
+        }
+        try {
+            String saveQuery = "update  FILM_PRECESS_ORDERS " +
+                    "SET" +
+                    " CUSTOMER_EMAIL = ?," +
+                    " ORDER_DATE = ?," +
+                    " COLLECTION_DATE = ?," +
+                    " PRINT_SIZE  = ?," +
+                    " BORDER_TYPE = ?," +
+                    " PRINT_TIME = ?," +
+                    " FILM_TYPE = ?," +
+                    " COLOR = ?," +
+                    " NUMBER_OF_COPIES = ?," +
+                    " FILM_SIZE = ?," +
+                    " TOTAL_PRICE = ?," +
+                    " DEPOSIT = ?," +
+                    " BALANCE = ?" +
+                    " WHERE" +
+                    " ORDER_NUMBER = " + order.getOrderNum();
+
+
+            PreparedStatement preparedStatement = con.prepareStatement(saveQuery);
+
+
+            preparedStatement.setString(1, order.getCustomerEmail() );
+            preparedStatement.setDate(2,  new java.sql.Date(order.getOrderDate().getTime()));
+            preparedStatement.setDate(3,  new java.sql.Date(order.getCollectionDate().getTime()));
+            preparedStatement.setString(4, order.getPrintSize() );
+            preparedStatement.setString(5, order.getBorderType() );
+            preparedStatement.setString(6, order.getPrintTime() );
+            preparedStatement.setString(7, order.getFilmType().toString() );
+
+            /**COLOR    9*/
+            String isColor = "Y";
+            if(!order.isColor()){
+                isColor = "N";
+            }
+            preparedStatement.setString(8, isColor);
+
+            preparedStatement.setInt(9, order.getNumberOfCopies() );
+            preparedStatement.setString(10, order.getFilmSize() );
+            preparedStatement.setDouble(11, order.getTotalPrice() );
+            preparedStatement.setDouble(12, order.getDeposit() );
+            preparedStatement.setDouble(13, order.getBalance() );
+
+            preparedStatement.execute();
+
+
+        }catch(java.sql.SQLException jse){
+            jse.printStackTrace();
+        }finally {
+            try {
+                con.close();
+            } catch(java.sql.SQLException jse){
+                jse.printStackTrace();
+            }
+        }
+
+
+    }
+
+    public long insertFilmProcessingOrder(FilmProcessingOrder order){
         long orderNum = 0;
         if (!isConnectionValid()){
             getConnection();
@@ -120,19 +239,19 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
         try {
             String saveQuery ="Insert into FILM_PRECESS_ORDERS " +
                     "(" +
-                        " CUSTOMER_EMAIL," +
-                        " ORDER_DATE," +
-                        " COLLECTION_DATE," +
-                        " PRINT_SIZE ," +
-                        " BORDER_TYPE," +
-                        " PRINT_TIME," +
-                        " FILM_TYPE," +
-                        " COLOR," +
-                        " NUMBER_OF_COPIES," +
-                        " FILM_SIZE," +
-                        " TOTAL_PRICE," +
-                        " DEPOSIT," +
-                        " BALANCE" +
+                    " CUSTOMER_EMAIL," +
+                    " ORDER_DATE," +
+                    " COLLECTION_DATE," +
+                    " PRINT_SIZE ," +
+                    " BORDER_TYPE," +
+                    " PRINT_TIME," +
+                    " FILM_TYPE," +
+                    " COLOR," +
+                    " NUMBER_OF_COPIES," +
+                    " FILM_SIZE," +
+                    " TOTAL_PRICE," +
+                    " DEPOSIT," +
+                    " BALANCE" +
                     ")" +
                     " values(?, ?, ?, ?, ?, ?, ? ,? ,?, ?, ?, ?, ?);";
             PreparedStatement preparedStatement = con.prepareStatement(saveQuery);
@@ -172,7 +291,6 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
                 jse.printStackTrace();
             }
         }
-
         return orderNum;
 
     }
@@ -235,16 +353,16 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
 
     }
 
-    public List<String> getAllOrderNumbers(){
+    public List<String> getAllorderEmails(){
         List<String> emailsList = new LinkedList<String>();
 
         if (con == null){
             getConnection();
         }
         try {
-            String grtMaxQuery = "SELECT CUSTOMER_EMAIL from FILM_PRECESS_ORDERS ";
+            String getAllEmails = "SELECT CUSTOMER_EMAIL from FILM_PRECESS_ORDERS ";
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(grtMaxQuery);
+            ResultSet rs = statement.executeQuery(getAllEmails);
             while (rs.next()) {
                 String orderNum = rs.getString(1);
                 emailsList.add(orderNum);
@@ -280,14 +398,87 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
         return true;
     }
 
+    public List<FilmProcessingOrder> getAllProcessingOrders(){
+
+        List<FilmProcessingOrder> filmProcessingOrderList = new LinkedList<FilmProcessingOrder>();
+
+        if (!isConnectionValid()){
+            getConnection();
+        }
+        try {
+
+            String retrieveOrer ="SELECT * FROM FILM_PRECESS_ORDERS "  ;
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(retrieveOrer);
+            while (rs.next()) {
+                FilmProcessingOrder filmProcessingOrder = new FilmProcessingOrder();
+                filmProcessingOrder.setOrderNum(rs.getLong(1));
+                filmProcessingOrder.setCustomerEmail(rs.getString(2));
+                filmProcessingOrder.setOrderDate(rs.getDate(3));
+                filmProcessingOrder.setCollectionDate(rs.getDate(4));
+                filmProcessingOrder.setPrintSize(rs.getString(5));
+                filmProcessingOrder.setBorderType(rs.getString(6));
+                filmProcessingOrder.setPrintTime(rs.getString(7));
+                filmProcessingOrder.setFilmType(FilmType.valueOf(rs.getString(8)));
+
+
+                String  completed = rs.getString(9);
+                boolean isclosed = false;
+                if("Y".equalsIgnoreCase(completed)){
+                    isclosed = true;
+                }
+
+                filmProcessingOrder.setCompleted(isclosed);
+                String color = rs.getString(10);
+
+                boolean isColor =true;
+                if("N".equalsIgnoreCase(color)){
+                    isColor= false;
+                }
+                filmProcessingOrder.setColor(isColor);
+
+                filmProcessingOrder.setNumberOfCopies(rs.getInt(11));
+                filmProcessingOrder.setFilmSize(rs.getString(12));
+                filmProcessingOrder.setTotalPrice(rs.getDouble(13));
+                filmProcessingOrder.setDeposit(rs.getDouble(14));
+                filmProcessingOrder.setBalance(rs.getDouble(15));
+
+                filmProcessingOrderList.add(filmProcessingOrder);
+
+            }
+        }catch(java.sql.SQLException jse){
+            jse.printStackTrace();
+        }finally {
+            try {
+                con.close();
+            } catch(java.sql.SQLException jse){
+                jse.printStackTrace();
+            }
+        }
+
+        return filmProcessingOrderList;
+
+    }
+
     public static void main(String[] args){
         FilmProceccingOrderInventoryImpl filmProceccingOrderInv = new FilmProceccingOrderInventoryImpl();
-        List<String> emailsList = filmProceccingOrderInv.getAllOrderNumbers();
+
+        List<FilmProcessingOrder> filmProcessingOrderList= filmProceccingOrderInv.getAllProcessingOrders();
+
+        for (FilmProcessingOrder  filmProcessingOrder: filmProcessingOrderList){
+            filmProcessingOrder.displayFilmProcessingOrder();
+        }
+
+        /*
+        List<String> emailsList = filmProceccingOrderInv.getAllorderEmails();
         int i = 1;
         for (String orderNumber : emailsList){
-            System.out.println("orderNumber_" + i + " = "+ orderNumber);
+            System.out.println("email is: " + i + " = "+ orderNumber);
             i++;
         }
+
+        System.out.println("The last photo processing order number is: " + filmProceccingOrderInv.getLastOrderNumber());
+        */
     }
 
 

@@ -1,6 +1,7 @@
 package bl.beens;
 
 import bl.enums.FilmType;
+import bl.enums.OrderType;
 
 import java.util.Date;
 
@@ -13,6 +14,9 @@ public class FilmProcessingOrder {
 
     private String printSize;
     private String borderType;
+
+    String orderType = OrderType.FilmProcessing.toString();
+
     private String printTime;
     private FilmType filmType;
     private boolean color;
@@ -223,5 +227,13 @@ public class FilmProcessingOrder {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public String getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
     }
 }

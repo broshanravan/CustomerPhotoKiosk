@@ -10,9 +10,7 @@ public class CustomerInventoryImpl implements CustomerInventory {
     private boolean hasData = false;
 
     public CustomerInventoryImpl(){
-        if(!isConnectionValid()){
-            getConnection();
-        }
+
     }
 
 
@@ -140,18 +138,19 @@ public class CustomerInventoryImpl implements CustomerInventory {
             getConnection();
         }
         try {
-            String saveQuery =  " UPDATE CUSTOMER_INVENTORY set" +
-                                " CUSTOMER_NAME = ?," +
-                                " CUSTOMER_PHONE_NUMBER = ?," +
-                                " CUSTOMER_EMAIL = ?," +
-                                " WHERE CUSTOMER_ID = " + customer.getCustomerId();
-            PreparedStatement preparedStatement = con.prepareStatement(saveQuery);
+            String updateQuery =  "UPDATE CUSTOMER_INVENTORY set" +
+                                 " CUSTOMER_NAME = ?," +
+                                 " CUSTOMER_PHONE_NUMBER = ?," +
+                                 " CUSTOMER_EMAIL = ?" +
+                                 " WHERE CUSTOMER_ID = " + customer.getCustomerId();
+            PreparedStatement preparedStatement = con.prepareStatement(updateQuery);
 
             preparedStatement.setString(1, customer.getName() );
             preparedStatement.setString(2, customer.getMobileNum());
             preparedStatement.setString(3, customer.getEmail());
 
-            System.out.println("Cusromer to be updated details in inventory:");
+            System.out.println(" detailsCustomer to be updated in inventory:::::::::::::::::::::::::::::::::");
+            customer.displayCustomerDetails();
 
             preparedStatement.executeUpdate();
 
@@ -169,7 +168,7 @@ public class CustomerInventoryImpl implements CustomerInventory {
     }
 
     public void saveCustomer(Customer customer){
-        if (customerExists(customer.getEmail())){
+        if (customerExists(customer.getEmail()) || customer.getCustomerId()!= 0){
             System.out.println( "Customer email: " + customer.getEmail() + " exists!");
             updateCustomer(customer);
 

@@ -1,5 +1,7 @@
 package pl;
 
+import bl.ProcessOtherOrders;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -14,16 +16,17 @@ import java.io.IOException;
 public class MainScreen extends JFrame {
 
     private int width = 520;
-    private int hight = 320;
+    private int hight = 360;
 
     JButton FilmProcBtn = new JButton("Film Processing");
     JButton PhotoGiftBtn = new JButton("Photo Gift");
     JButton engravingBtn = new JButton("Engraving");
-
+    JButton manageExistingOrders = new JButton("Manage Existing Orders");
 
     String fileName = "./logos/KodakLogo.jpg";
 
     ButtonListener buttonListener = new ButtonListener();
+    ProcessOtherOrders processOtherOrders = new ProcessOtherOrders();
 
 
     public void setupScreen() {
@@ -46,6 +49,9 @@ public class MainScreen extends JFrame {
         getContentPane().add(engravingBtn);
         engravingBtn.setBounds(350,120,150,150);
 
+        getContentPane().add(manageExistingOrders);
+        manageExistingOrders.setBounds(135,290,250,25);
+
 
         /*************************************************************** Adding Kodak logo to Panel **********************************************************************************/
 
@@ -66,6 +72,7 @@ public class MainScreen extends JFrame {
         FilmProcBtn.addActionListener(buttonListener);
         PhotoGiftBtn.addActionListener(buttonListener);
         engravingBtn.addActionListener(buttonListener);
+        manageExistingOrders.addActionListener(buttonListener);
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
@@ -92,9 +99,22 @@ public class MainScreen extends JFrame {
                 EngravingScreen engravingScreen = new EngravingScreen();
                 engravingScreen.setupScreen();
                 engravingScreen.setVisible(true);
-            }
+            } else if (e.getActionCommand().equals("Manage Existing Orders")) {
+            OrderSearchScreen orderSearchScreen = new OrderSearchScreen();
+            orderSearchScreen.setupScreen();
+            orderSearchScreen.setVisible(true);
+        }
+
+
+
 
         }
+    }
+
+    public static void main(String[] args){
+        MainScreen mainScreen = new  MainScreen();
+        mainScreen.setupScreen();
+        mainScreen.setVisible(true);
     }
 
 }

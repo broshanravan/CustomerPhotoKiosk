@@ -6,6 +6,8 @@ import bl.beens.FilmProcessingOrder;
 import bl.enums.FilmType;
 import dl.CustomerInventory;
 import dl.CustomerInventoryImpl;
+import dl.FilmProceccingOrderInventory;
+import dl.FilmProceccingOrderInventoryImpl;
 import org.jdatepicker.impl.DateComponentFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -23,11 +25,13 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
 public class UpdateFilmProcessingOrderScreen extends JDialog {
 
+    OrderSearchScreen orderSearchScreen;
     long orderId;
     long customerId = 0;
     boolean color =false;
@@ -37,7 +41,8 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
     double totalPrice =0;
     double deposit = 0;
     double balance = 0;
-
+    double  vat = 0;
+    double grandTotal =0;
     String printSize ;
     String borderType ;
     String printTime ;
@@ -45,7 +50,12 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
     String filmSize;
     int numberOfCopies;
 
-    DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+    Customer customer = null;
+    FilmProcessingOrder filmProcessingOrder = null;
+
+
+    DateFormat dateFormat = new SimpleDateFormat("dd/MMM/YYYY");
+
 
     JLabel nameLbl = new JLabel("NAME:");
     JLabel emailLbl = new JLabel("Email:");
@@ -55,6 +65,9 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
     JLabel dateLbl = new JLabel(" Order Date:");
     JLabel dateValueLbl = new JLabel(dateFormat.format(new Date()));
 
+    JLabel closedLbl = new JLabel("<html>This order has been<br/>closed</html>", SwingConstants.CENTER);
+
+
     JLabel collectionDateLbl = new JLabel("Collection Date:");
     JLabel printSizeLbl = new JLabel("Print Size:");
     JLabel filmTypeLbl = new JLabel("Film Type:");
@@ -63,6 +76,7 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
 
     JLabel totalLbl = new JLabel("Total Price :     £");
+    JLabel vatlLbl = new JLabel("VAT 17.5% :     £");
     JLabel depositLbl = new JLabel("Deposit :          £");
     JLabel toPayLbl = new JLabel("Balance :         £");
 
@@ -81,12 +95,13 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
 
     JTextField totalFld = new JTextField();
+    JTextField vatFld = new JTextField();
     JTextField depositFld = new JTextField();
     JTextField toPayFld = new JTextField();
 
 
     JRadioButton film6x4Radio = new JRadioButton("6 x 4\" (10x15)");
-    JRadioButton film5x74Radio = new JRadioButton("5 x 7\" (15x85)");
+    JRadioButton film5x7Radio = new JRadioButton("5 x 7\" (15x85)");
     JRadioButton film6x8Radio = new JRadioButton("6 x 8\" (15x120)");
 
 
@@ -114,12 +129,12 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
     JRadioButton mafiFourHr4Radio = new JRadioButton("MAFI");
 
-    String[] fimlList = {"Please Select", "FUJI", "KODAK", "KONIKA", "AGFA", "BOOTS"};
-    JComboBox filmTypeCombo = new JComboBox(fimlList);
+    String[] filmList = {"Please Select", "FUJI", "KODAK", "KONIKA", "AGFA", "BOOTS"};
+    JComboBox filmTypeCombo = new JComboBox(filmList);
 
-    JButton searchBtn = new JButton("Search Details");
+    JButton closeBtn = new JButton("Complete & Close");
     JButton cancelBtn = new JButton("Cancel");
-    JButton printBtn = new JButton("Print");
+    JButton printBtn = new JButton("update & Print");
 
     ButtonGroup filmSizeGroup = new ButtonGroup();
     ButtonGroup colorCroup = new ButtonGroup();
@@ -130,7 +145,7 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
 
 
-    ProcessFilmDevelopmentOrder processOtherOrders = new ProcessFilmDevelopmentOrder();
+    ProcessFilmDevelopmentOrder processFilmDevelopmentOrder = new ProcessFilmDevelopmentOrder();
 
     CustomerInventory customerInventory = new CustomerInventoryImpl();
 
@@ -140,13 +155,16 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
     JDatePickerImpl datePicker = null;
 
-    public UpdateFilmProcessingOrderScreen(long orderIdIn){
-        orderId = orderIdIn;
+    public UpdateFilmProcessingOrderScreen(Customer customerIn, FilmProcessingOrder filmProcessingOrderIn ,OrderSearchScreen orderSearchScreenIn){
+        orderId = filmProcessingOrderIn.getOrderNum();
+        customer = customerIn;
+        filmProcessingOrder = filmProcessingOrderIn;
+        orderSearchScreen = orderSearchScreenIn;
     }
 
     public void setupScreen() {
 
-        setTitle("Film Processing");
+        setTitle("Update Film Processing");
         setAlwaysOnTop(true);
         getContentPane().setBackground(new Color(255, 255, 242));
         this.setLayout(null);
@@ -154,8 +172,15 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
         this.setSize(width, hight);
         setResizable(false);
 
+        getContentPane().add(closedLbl);
 
-        /*************************************************************** Adding Kodak logo to Panel **********************************************************************************/
+        closedLbl.setFont(new Font("Serif", Font.BOLD, 80));
+        closedLbl.setBounds(30,350,800,200);
+        closedLbl.setForeground(Color.red);
+        closedLbl.setBorder(BorderFactory.createLineBorder(Color.red));
+        closedLbl.setVisible(false);
+
+        /*********************************************** Adding Kodak logo to Panel **************************************************************/
 
 
         BufferedImage KodakLogo = null;
@@ -195,8 +220,8 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
         getContentPane().add(emailFld);
         emailFld.setBounds(110, 150, 220, 25);
 
-        getContentPane().add(searchBtn);
-        searchBtn.setBounds(370, 150, 150, 25);
+        getContentPane().add(closeBtn);
+        closeBtn.setBounds(370, 150, 150, 25);
 
 
         getContentPane().add(nameLbl);
@@ -225,6 +250,7 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
         collectionDateLbl.setBounds(550, 210, 100, 25);
 
 
+
         Properties p = new Properties();
         p.put("text.today", "today");
         p.put("text.month", "month");
@@ -234,22 +260,10 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
         datePicker = new JDatePickerImpl(datePanel, new DateComponentFormatter());
 
         getContentPane().add(datePicker);
-        //datePicker.setOpaque(false);
-
-
-        //getContentPane().add(CollectionDateFld);
+        ;
         datePicker.setBounds(670, 210, 200, 25);
 
 
-        /*
-        getContentPane().add(jobNoLbl);
-        jobNoLbl.setBounds(550, 210, 100, 25);
-
-        getContentPane().add(jobNoFld);
-        jobNoFld.setBounds(670, 210, 200, 25);
-        */
-
-        /** Second Section */
 
 
         /** PrintSize radio group*/
@@ -264,15 +278,15 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
         film6x4Radio.setBounds(20, 380, 120, 25);
         film6x4Radio.setOpaque(false);
 
-        getContentPane().add(film5x74Radio);
-        film5x74Radio.setBounds(20, 430, 120, 25);
-        film5x74Radio.setOpaque(false);
+        getContentPane().add(film5x7Radio);
+        film5x7Radio.setBounds(20, 430, 120, 25);
+        film5x7Radio.setOpaque(false);
 
 
         printSizeGroup.add(film6x8Radio);
-        film6x8Radio.setSelected(true);
+        //film6x8Radio.setSelected(true);
         printSizeGroup.add(film6x4Radio);
-        printSizeGroup.add(film5x74Radio);
+        printSizeGroup.add(film5x7Radio);
 
         /** Border radio group*/
         getContentPane().add(borderLbl);
@@ -292,7 +306,7 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
 
         borderCroup.add(withBorderRadio);
-        withBorderRadio.setSelected(true);
+        //withBorderRadio.setSelected(true);
         borderCroup.add(noBorderRadio);
         borderCroup.add(glossyRadio);
 
@@ -348,7 +362,7 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
 
         filmSizeGroup.add(hundred10Radio);
-        hundred10Radio.setSelected(true);
+        //hundred10Radio.setSelected(true);
         filmSizeGroup.add(hundred35Radio);
         filmSizeGroup.add(hundred20Radio);
 
@@ -368,7 +382,7 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
 
         colorCroup.add(colorRadio);
-        colorRadio.setSelected(true);
+        //colorRadio.setSelected(true);
         colorCroup.add(bAwRadio);
 
         /** Copies Number radio group*/
@@ -422,39 +436,56 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
 
 
+
         getContentPane().add(totalLbl);
         totalLbl.setBounds(450, 670, 100, 25);
 
         getContentPane().add(totalFld);
         totalFld.setBounds(550, 670, 100, 25);
 
+
+        getContentPane().add(vatlLbl);
+        vatlLbl.setBounds(450, 700, 100, 25);
+        vatFld.setEditable(false);
+
+        getContentPane().add(vatFld);
+        vatFld.setBounds(550, 700, 100, 25);
+
+        vatFld.setForeground(Color.black);
+        vatFld.setBackground(Color.white);
+
+
         getContentPane().add(depositLbl);
-        depositLbl.setBounds(450, 700, 100, 25);
+        depositLbl.setBounds(450, 730, 100, 25);
 
         getContentPane().add(depositFld);
-        depositFld.setBounds(550, 700, 100, 25);
+        depositFld.setBounds(550, 730, 100, 25);
 
 
         getContentPane().add(toPayLbl);
-        toPayLbl.setBounds(450, 730, 100, 25);
+        toPayLbl.setBounds(450, 760, 100, 25);
 
         getContentPane().add(toPayFld);
-        toPayFld.setBounds(550, 730, 100, 25);
+        toPayFld.setBounds(550, 760, 100, 25);
         toPayFld.setEditable(false);
         toPayFld.setForeground(Color.black);
         toPayFld.setBackground(Color.white);
 
+
         getContentPane().add(printBtn);
-        printBtn.setBounds(200, 800, 100, 25);
+        printBtn.setBounds(50, 810, 150, 25);
+
+        getContentPane().add(closeBtn);
+        closeBtn.setBounds(370, 810, 150, 25);
 
         getContentPane().add(cancelBtn);
-        cancelBtn.setBounds(600, 800, 100, 25);
+        cancelBtn.setBounds(700, 810, 150, 25);
 
 
         ButtonListener buttonListener = new ButtonListener();
         printBtn.addActionListener(buttonListener);
         cancelBtn.addActionListener(buttonListener);
-        searchBtn.addActionListener(buttonListener);
+        closeBtn.addActionListener(buttonListener);
 
 
         String border = "";
@@ -482,10 +513,159 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
         addTotalPriceFieldsListeners();
         addDepositFieldsListeners();
         addOtherFieldListener();
+        populateForm();
 
 
     }
 
+    public  void populateForm(){
+
+        if(customer != null){
+
+             nameFld.setText(customer.getName());
+             emailFld.setText(customer.getEmail());
+             telFld.setText(customer.getMobileNum());
+             customerId = customer.getCustomerId();
+
+        }
+
+
+
+        if(filmProcessingOrder != null){
+            orderNumberFld.setText(String.valueOf(filmProcessingOrder.getOrderNum()));
+
+            deposit = filmProcessingOrder.getDeposit();
+            String depositStr = String.valueOf(deposit);
+
+            double total = filmProcessingOrder.getTotalPrice();
+            String totalStr = String.valueOf(total);
+            double vat = Math.floor(filmProcessingOrder.getTotalPrice() * 17.5)/100;
+            String vatStr = String.valueOf(vat);
+
+            double toPay = total + vat - deposit;
+            String toPayStr = String.valueOf(Math.floor(toPay * 100) / 100);
+
+            System.out.println("filmTypeCombo = " + filmProcessingOrder.getFilmType() );
+
+            filmTypeCombo.setSelectedIndex(0);
+            String fimlTypStr =filmProcessingOrder.getFilmType().toString();
+
+            System.out.println("filmList.length = " + filmList.length);
+
+            int index = 0;
+
+
+            for (int i = 0; i < filmList.length; i++){
+                System.out.println("Item at index " + i + " = " + filmTypeCombo.getItemAt(i).toString());
+                if (filmTypeCombo.getItemAt(i).toString().contains(fimlTypStr)){
+                    index = i;
+                }
+            }
+
+
+            filmTypeCombo.setSelectedIndex(index);
+
+            totalFld.setText(totalStr);
+            vatFld.setText(vatStr);
+            depositFld.setText(depositStr);
+            toPayFld.setText(toPayStr);
+
+            Date collectionDate = filmProcessingOrder.getCollectionDate();
+
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(collectionDate);
+            int day =calendar.get(Calendar.DAY_OF_MONTH);
+            int month = calendar.get(Calendar.MONTH);
+            int year =calendar.get(Calendar.YEAR);
+
+
+            datePicker.getModel().setDay(day);
+            datePicker.getModel().setMonth(month);
+            datePicker.getModel().setYear(year);
+            datePicker.getModel().setSelected(true);
+
+            orderId = filmProcessingOrder.getOrderNum();
+
+
+            setSelectedRadioButtons(filmProcessingOrder);
+
+        }
+
+     }
+
+    private void setSelectedRadioButtons(FilmProcessingOrder filmProcessingOrder) {
+
+        if (filmProcessingOrder.getPrintSize().equalsIgnoreCase("6 x 4\"")){
+            film6x4Radio.setSelected(true);
+        } else if(filmProcessingOrder.getPrintSize().equalsIgnoreCase("5 x 7\"")){
+            film5x7Radio.setSelected(true);
+        } else if(filmProcessingOrder.getPrintSize().equalsIgnoreCase("6 x 8\"")){
+            film6x8Radio.setSelected(true);
+        }
+
+
+        if (filmProcessingOrder.isColor()){
+            colorRadio.setSelected(true);
+        } else {
+            bAwRadio.setSelected(true);
+        }
+
+
+
+        if (filmProcessingOrder.getBorderType().equalsIgnoreCase("With Border")){
+            withBorderRadio.setSelected(true);
+        } else if (filmProcessingOrder.getBorderType().equalsIgnoreCase("No Border")) {
+            noBorderRadio.setSelected(true);
+        }else{
+            glossyRadio.setSelected(true);
+        }
+
+
+        if (filmProcessingOrder.getNumberOfCopies() ==1 ){
+            oneRadio.setSelected(true);
+            otherFld.setEditable(false);
+            otherFld.setText("");
+        } else if (filmProcessingOrder.getNumberOfCopies() == 2 ){
+            twoRadio.setSelected(true);
+            otherFld.setEditable(false);
+            otherFld.setText("");
+        } else if (filmProcessingOrder.getNumberOfCopies() == 3 ){
+            threeRadio.setSelected(true);
+            otherFld.setEditable(false);
+            otherFld.setText("");
+        } else if (filmProcessingOrder.getNumberOfCopies() == 4 ){
+            fourRadio.setSelected(true);
+            otherFld.setEditable(false);
+            otherFld.setText("");
+        }
+        else {
+            otherRadio.setSelected(true);
+            otherFld.setText(String.valueOf(filmProcessingOrder.getNumberOfCopies()));
+            otherFld.setEnabled(true);
+            otherFld.setEditable(true);
+
+        }
+
+        if (filmProcessingOrder.getPrintTime().equalsIgnoreCase("One Hour") ){
+            oneHRRadio.setSelected(true);
+        } else if (filmProcessingOrder.getPrintTime().equalsIgnoreCase("24 Hours") ){
+            twentyFourHr4Radio.setSelected(true);
+        } else if (filmProcessingOrder.getPrintTime().equalsIgnoreCase("MAFI") ){
+            mafiFourHr4Radio.setSelected(true);
+        }
+
+
+        if(filmProcessingOrder.getFilmSize().equalsIgnoreCase("110")){
+            hundred10Radio.setSelected(true);
+        } else if(filmProcessingOrder.getFilmSize().equalsIgnoreCase("135")){
+            hundred35Radio.setSelected(true);
+        }else if(filmProcessingOrder.getFilmSize().equalsIgnoreCase("120")){
+            hundred20Radio.setSelected(true);
+        }
+
+
+    }
 
     public void addOtherFieldListener(){
         otherFld.getDocument().addDocumentListener(new DocumentListener() {
@@ -533,11 +713,18 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
                 } else {
                     totalFld.setBorder(BorderFactory.createLineBorder(Color.black));
                     if(isDepositFieldsValid()){
-                        if(deposit < totalPrice){
+
+                        vat = totalPrice * 0.175;
+                        vat = Math.floor(vat * 100) / 100;
+                        grandTotal = totalPrice + vat;
+                        if(deposit < grandTotal){
                             depositFld.setBorder(BorderFactory.createLineBorder(Color.black));
                         }
-                        balance = totalPrice - deposit;
-                        balance = Math.floor(balance * 100) / 100;
+
+                        balance = grandTotal - deposit;
+;
+
+                        vatFld.setText(String.valueOf(vat));
                         toPayFld.setText(String.valueOf(balance));
                     }
                 }
@@ -565,10 +752,15 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
                     depositFld.setBorder(BorderFactory.createLineBorder(Color.red));
                 }else{
                     depositFld.setBorder(BorderFactory.createLineBorder(Color.black));
+                    if("".equalsIgnoreCase(depositFld.getText().trim())){
+                        deposit = 0;
+                    }
                     if(isTotalFieldsValid()){
-                        balance = totalPrice - deposit;
+                        vat = Math.floor(vat * 100) / 100;
+                        balance = totalPrice  + vat - deposit;
                         balance = Math.floor(balance * 100) / 100;
-                        if(deposit > totalPrice){
+                        if(deposit > totalPrice * 1.175){
+                            System.err.println("depost fieldd listener failed" );
                             depositFld.setBorder(BorderFactory.createLineBorder(Color.red));
                         } else {
                             toPayFld.setText(String.valueOf(balance));
@@ -589,8 +781,15 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
         } else {
             try {
                 totalPrice = Double.parseDouble(totalFld.getText());
-                if(deposit > totalPrice){
+                vat = totalPrice * 0.175;
+                grandTotal =
+                vat = Math.floor(vat * 100) / 100;
+                grandTotal = totalPrice + vat;
+                System.out.println("grandTotal =" + grandTotal);
+                System.out.println("deposit =" + deposit);
+                if(deposit > grandTotal){
                     depositFld.setBorder(BorderFactory.createLineBorder(Color.red));
+                    System.err.println("totalfieldvalid failed" );
                     isValid = false;
                 } else {
                     depositFld.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -641,42 +840,6 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
         }
         return isValid;
     }
-
-
- /*
-    private void findCustomer() {
-
-        CustomerInventory customerInventoryImpl = new CustomerInventoryImpl();
-        String customerEmail = emailFld.getText();
-
-
-        if (customerEmail != null && !"".equalsIgnoreCase(customerEmail) && customerEmail.contains("@") && customerEmail.contains(".")
-                && (customerEmail.indexOf("@")< customerEmail.indexOf(".") && !customerEmail.contains(".."))) {
-
-            Customer customer = customerInventoryImpl.findCustomer(customerEmail);
-            if (customer.getName() == null && customer.getMobileNum() == null) {
-                newCustomerLbl.setVisible(true);
-            }else{
-                newCustomerLbl.setVisible(false);
-                customerId = customer.getCustomerId();
-            }
-            emailFld.setBorder(BorderFactory.createLineBorder(Color.black));
-            if (customer.getMobileNum() != null && !"".equalsIgnoreCase(customer.getMobileNum())) {
-                telFld.setText(customer.getMobileNum());
-                customerId = customer.getCustomerId();
-            }
-
-            if (customer.getName() != null && !"".equalsIgnoreCase(customer.getName())) {
-                nameFld.setText(customer.getName());
-            }
-        } else {
-            emailFld.setBorder(BorderFactory.createLineBorder(Color.red));
-            newCustomerLbl.setVisible(false);
-        }
-
-    }
-
- */
 
     private boolean isFormDataValid() {
         boolean valid = true;
@@ -765,11 +928,11 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
     private void getPrintSize(){
 
         if (film6x8Radio.isSelected()){
-            printSize = "6 x 4\" (10x15";
+            printSize = "6 x 8\"";
         } else if (film6x4Radio.isSelected()){
-            printSize = "5 x 7\" (15x85)";
-        } else if (film5x74Radio.isSelected()) {
-            printSize = "6 x 8\" (15x120";
+            printSize = "6 x 4\"";
+        } else if (film5x7Radio.isSelected()) {
+            printSize = "5 x 7\"";
         }
 
     }
@@ -778,11 +941,11 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
 
         if (withBorderRadio.isSelected()){
-            borderType = "\"With Border\"";
+            borderType = "With Border";
         } else if (noBorderRadio.isSelected()){
-            borderType = "\"No Border";
+            borderType = "No Border";
         } else if (glossyRadio.isSelected()) {
-            borderType = "\"Glossy\"0";
+            borderType = "Glossy";
         }
 
     }
@@ -820,23 +983,28 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
     private void getFilmSize(){
 
 
-        if (film6x8Radio.isSelected()){
-            filmSize= "6x8";
-        } else if (film6x4Radio.isSelected()){
-            filmSize= "6x4";;
-        } else if (film5x74Radio.isSelected()){
-            filmSize= "5x7";
+
+        //hundred10Radio = new JRadioButton("110");
+        //JRadioButton  = new JRadioButton("135");
+        //JRadioButton hundred20Radio
+
+        if (hundred10Radio.isSelected()){
+            filmSize= "110";
+        } else if (hundred20Radio.isSelected()){
+            filmSize= "120";;
+        } else if (hundred35Radio.isSelected()){
+            filmSize= "135";
         }
 
 
     }
 
     private void getColor(){
-        JRadioButton colorRadio = new JRadioButton("Color");
-        JRadioButton bAwRadio = new JRadioButton("Black & White");
 
         if (colorRadio.isSelected()){
             color = true;
+        } else {
+            color =false;
         }
 
     }
@@ -883,9 +1051,6 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
             Date collectionDate = (Date) datePicker.getModel().getValue();
 
-
-
-
             if ("Other".equalsIgnoreCase(numberOfCopiesStr)) {
                 numberOfCopiesStr = otherFld.getText();
             }
@@ -915,14 +1080,15 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
                     balance
             );
 
-            customer.displayCustomerDetails();
-            //filmProcessingOrder.displayFilmProcessingOrder();
+            filmProcessingOrder.setOrderNum(orderId);
 
+            //customer.displayCustomerDetails();
 
-            long orderId = processOtherOrders.saveFilmProcessingOrder(filmProcessingOrder, customer);
+            processFilmDevelopmentOrder.saveFilmProcessingOrder(filmProcessingOrder, customer);
             customerInventory.saveCustomer(customer);
-            JOptionPane.showMessageDialog(this, "Your orderId is: " + orderId);
+            JOptionPane.showMessageDialog(this, "Order number " + orderId + " has been updated successfully");
             this.setVisible(false);
+            orderSearchScreen.setVisible(false);
 
         }
 
@@ -932,8 +1098,9 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
     class ButtonListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            if (e.getActionCommand().equals("Print")) {
+            if (e.getActionCommand().equals("update & Print")) {
                 saveOrder();
+
             }  else if (e.getActionCommand().equals("Cancel")) {
                 setVisible(false);
             }
@@ -949,6 +1116,7 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
                 otherFld.setEditable(true);
             } else{
                 otherFld.setEditable(false);
+                otherFld.setText("");
             }
 
         }
@@ -956,12 +1124,22 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
     }
 
 
+    /*
     public static void main(String[] args){
 
-        UpdateFilmProcessingOrderScreen updateFilmProcessingOrderScreen = new UpdateFilmProcessingOrderScreen(8);
+        CustomerInventory customerInventory = new CustomerInventoryImpl();
+        Customer customer = customerInventory.findCustomer("lahehn@hotmail.com");
+        customer.displayCustomerDetails();
+        FilmProceccingOrderInventory filmProcessingOrderInventory = new FilmProceccingOrderInventoryImpl();
+        FilmProcessingOrder filmProcessingOrder= filmProcessingOrderInventory.retrieveProcessingOrder(1);
+
+
+        UpdateFilmProcessingOrderScreen updateFilmProcessingOrderScreen = new UpdateFilmProcessingOrderScreen(customer,filmProcessingOrder);
         updateFilmProcessingOrderScreen.setupScreen();
+        updateFilmProcessingOrderScreen.populateForm();
         updateFilmProcessingOrderScreen.setVisible(true);
     }
+    */
 
 
 

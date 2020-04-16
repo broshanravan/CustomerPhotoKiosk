@@ -4,27 +4,28 @@ import bl.enums.OrderType;
 
 import java.util.Date;
 
-public class Order {
-
+public class OtherOrderTypes {
     private String email;
     private OrderType orderType;
+    private String jobType;
     private long jobNumber;
     private String customerInstruction;
     private String adminInstruction;
 
     private Date collectionDate;
+    private Date orderDate;
 
     private double totalPrice;
     private double deposit;
     private double balance;
 
-    public Order(){
+    public OtherOrderTypes(){
 
     }
 
 
-    public Order( long jobNumber, String email, OrderType orderType, String customerInstruction,
-               String adminInstruction,  Date collectionDate, double totalPrice, double deposit, double remainting) {
+    public OtherOrderTypes( long jobNumber, String email, OrderType orderType, String customerInstruction,
+                        String adminInstruction,  Date collectionDate, double totalPrice, double deposit, double remainting,String jobTypeIn) {
         this.email = email;
         this.orderType = orderType;
         this.jobNumber = jobNumber;
@@ -34,10 +35,12 @@ public class Order {
         this.totalPrice = totalPrice;
         this.deposit = deposit;
         this.balance = remainting;
+        this.jobType = jobTypeIn;
     }
 
-    public Order(String email, OrderType orderType, String customerInstruction,
-                 String adminInstruction,  Date collectionDate, double totalPrice, double deposit, double remaining) {
+    public OtherOrderTypes(String email, OrderType orderType, String customerInstruction,
+                       String adminInstruction,  Date collectionDate, double totalPrice, double deposit, double remaining,
+                           String jobTypeIn) {
         this.email = email;
         this.orderType = orderType;
         this.customerInstruction = customerInstruction;
@@ -46,6 +49,7 @@ public class Order {
         this.totalPrice = totalPrice;
         this.deposit = deposit;
         this.balance = remaining;
+        this.jobType = jobTypeIn;
     }
 
     public String getEmail() {
@@ -88,7 +92,7 @@ public class Order {
         this.adminInstruction = adminInstruction;
     }
 
-   public Date getCollectionDate() {
+    public Date getCollectionDate() {
         return collectionDate;
     }
 
@@ -120,6 +124,22 @@ public class Order {
         this.balance = balance;
     }
 
+    public String getJobType() {
+        return jobType;
+    }
+
+    public void setJobType(String jobType) {
+        this.jobType = jobType;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
     public void displayOrder() {
         System.out.println("jobNumber = " + jobNumber);
         System.out.println("customerInstruction = " + customerInstruction);
@@ -128,6 +148,7 @@ public class Order {
         System.out.println("totalPrice = " + totalPrice);
         System.out.println("deposit = " + deposit);
         System.out.println("balance = " + balance);
-    }
 
+        System.out.println("orderDate = " + orderDate);
+    }
 }
