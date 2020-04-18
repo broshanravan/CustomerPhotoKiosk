@@ -39,6 +39,17 @@ public class OtherOrdersInventoryImpl implements OtherOrdersInventory {
                         rs.getDouble("BALANCE"),
                         rs.getString("JOB_TYPE"));
 
+
+
+                String isClosed = rs.getString("COMPLETED_CLOSED");
+
+                if("Y".equalsIgnoreCase(isClosed)) {
+                    otherOrderTypes.setClosed(true);
+                } else {
+                    otherOrderTypes.setClosed(false);
+                }
+
+
             }
         }catch(java.sql.SQLException jse){
             jse.printStackTrace();
@@ -130,13 +141,14 @@ public class OtherOrdersInventoryImpl implements OtherOrdersInventory {
             getConnection();
         }
         try {
+            System.err.print("Closing order Number" + orderId);
             String updateQuery = "UPDATE OTHER_ORDERS SET" +
-                    "COMPLETED_CLOSED = Y" +
-                    " WHERE ORDER_ID =" + orderId;
+                    " COMPLETED_CLOSED = 'Y'" +
+                    " WHERE ORDER_NUMBER = " + orderId;
 
             Statement statement = con.createStatement();
 
-            statement.executeQuery(updateQuery);
+            statement.execute(updateQuery);
 
 
 
@@ -328,8 +340,6 @@ public class OtherOrdersInventoryImpl implements OtherOrdersInventory {
 
     }
 
-
-
     public OtherOrderTypes getPhotoGiftOrder(long orderId){
        OtherOrderTypes otherOrderTypes = null;
         String selectOQuery = "Select * from OTHER_ORDERS  where" +
@@ -388,6 +398,13 @@ public class OtherOrdersInventoryImpl implements OtherOrdersInventory {
                         rs.getDouble("DEPOSIT"),
                         rs.getDouble("BALANCE"),
                         rs.getString("JOB_TYPE"));
+
+                if("Y".equalsIgnoreCase(rs.getString("COMPLETED_CLOSED"))){
+                    otherOrders.setClosed(true);
+                } else{
+                    otherOrders.setClosed(false);
+                }
+
             }
 
         }catch(java.sql.SQLException jse){

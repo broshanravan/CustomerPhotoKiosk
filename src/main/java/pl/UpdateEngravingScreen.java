@@ -1,5 +1,6 @@
 package pl;
 
+import bl.ProcessOtherOrders;
 import bl.beens.Customer;
 import bl.beens.OtherOrderTypes;
 import bl.enums.OrderType;
@@ -55,7 +56,8 @@ public class UpdateEngravingScreen extends  JDialog{
         customer = customeIn;
         engravingOrder = engravingOrderIn;
     }
-    OtherOrdersInventory otherOrdersInventory = new OtherOrdersInventoryImpl();
+
+    ProcessOtherOrders processOtherOrders = new ProcessOtherOrders();
 
     DateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");
 
@@ -64,6 +66,7 @@ public class UpdateEngravingScreen extends  JDialog{
     double balance = 0;
     double  vat = 0;
     double grandTotal =0;
+    long orderId=0;
 
     OrderSearchScreen orderSearchScreen;
 
@@ -72,6 +75,7 @@ public class UpdateEngravingScreen extends  JDialog{
     JLabel orderNumberLbl = new JLabel("Order Number:");
 
     JLabel closedLbl = new JLabel("<html>This order has been<br/>closed</html>", SwingConstants.CENTER);
+    JLabel generalErrorLbl = new JLabel("<html>There was an error in provided order details</html>", SwingConstants.CENTER);
 
     JLabel nameLbl = new JLabel("NAME:");
     JLabel emailLbl = new JLabel("Email:");
@@ -116,7 +120,9 @@ public class UpdateEngravingScreen extends  JDialog{
 
     JDatePickerImpl collectionDatePicker = null;
 
-    CustomerInventory customerInventory = new CustomerInventoryImpl();
+    //CustomerInventory customerInventory = new CustomerInventoryImpl();
+
+
 
     String fileName = "./logos/KodakLogo.jpg";
 
@@ -186,13 +192,6 @@ public class UpdateEngravingScreen extends  JDialog{
         getContentPane().add(emailFld);
         emailFld.setBounds(120,200,220,25);
 
-        /*
-        getContentPane().add(newCustomerLbl);
-        newCustomerLbl.setBounds(350, 200, 220, 25);
-        newCustomerLbl.setForeground(Color.blue);
-        newCustomerLbl.setVisible(false);
-        */
-
 
         getContentPane().add(closeBtn);
         closeBtn.setBounds(550, 200, 150, 25);
@@ -221,9 +220,6 @@ public class UpdateEngravingScreen extends  JDialog{
         getContentPane().add(custInstructionArea);
         custInstructionArea.setBorder( BorderFactory.createLineBorder(Color.BLACK));
         custInstructionArea.setBounds(60,370,660,100);
-
-        //getContentPane().add(printLblBtn);
-        //printLblBtn.setBounds(620,480,100,25);
 
 
         getContentPane().add(adminFillLbl);
@@ -319,6 +315,12 @@ public class UpdateEngravingScreen extends  JDialog{
 
         addDepositFieldsListeners();
         addTotalPriceFieldsListeners();
+
+        getContentPane().add(generalErrorLbl);
+        generalErrorLbl.setBounds(180, 850, 400, 35);
+        generalErrorLbl.setForeground(Color.red);
+        generalErrorLbl.setFont(new Font("Serif", Font.BOLD, 18));
+        generalErrorLbl.setVisible(false);
         populateScreen();
 
     }
@@ -372,11 +374,55 @@ public class UpdateEngravingScreen extends  JDialog{
             totalFld.setText(totalStr);
             depositFld.setText(depositStr);
             toPayFld.setText(toPayStr);
+
+            if(engravingOrder.isClosed()){
+                disableFields();
+                closedLbl.setVisible(true);
+            }
         }
 
     }
 
+    private void closeOrder(){
+        int answer = JOptionPane.showConfirmDialog(this ,"Are you sure you would like to close Engraving order number " + jobNumber +"?");
+
+        System.out.println(answer);
+
+        if(answer == 0) {
+            System.out.println("being Closed");
+            processOtherOrders.closeOrder(jobNumber);
+            setVisible(false);
+        }else if(answer == 2) {
+            System.out.println("Closing canceled");
+            setVisible(false);
+        }else {
+            System.out.println("Not being Closed");
+        }
+    }
+
+    private void disableFields(){
+        nameFld.setEnabled(false);
+        emailFld.setEnabled(false);
+        telFld.setEnabled(false);
+        orderNumberFld.setEnabled(false);
+        custInstructionArea.setEnabled(false);
+        adminInstructionArea.setEnabled(false);
+
+        dateValueLbl.setEnabled(false);
+
+         totalFld.setEnabled(false);
+         vatFld.setEnabled(false);
+         depositFld.setEnabled(false);
+         toPayFld.setEnabled(false);
+
+        closeBtn.setEnabled(false);
+        printBtn.setEnabled(false);
+
+        collectionDatePicker.setEnabled(false);
+    }
+
     private long saveEngraingOrder(){
+        generalErrorLbl.setVisible(false);
         long orderNumber = 0;
         if(isFormDataValid()){
             String customerInstruction = custInstructionArea.getText();
@@ -402,13 +448,15 @@ public class UpdateEngravingScreen extends  JDialog{
             );
 
             Customer customer = new Customer(customerName,  telephone, customerEmail,customerId) ;
-            customerInventory.saveCustomer(customer);
-            orderNumber = otherOrdersInventory.saveOrder(engravingOrder);
+
+            processOtherOrders.saveOrder(engravingOrder, customer);
+
 
             JOptionPane.showMessageDialog(this, "Your orderId is: " + orderNumber);
             this.setVisible(false);
+        } else {
+            generalErrorLbl.setVisible(true);
         }
-
 
         return orderNumber;
     }
@@ -418,7 +466,8 @@ public class UpdateEngravingScreen extends  JDialog{
         public void actionPerformed(ActionEvent e) {
             if (e.getActionCommand().equals("Update & Print")) {
                 saveEngraingOrder();
-            } else if (e.getActionCommand().equals("complete & Close")) {
+            } else if (e.getActionCommand().equals("Complete & Close")) {
+                closeOrder();
 
             } else if (e.getActionCommand().equals("Cancel")) {
                 setVisible(false);
@@ -651,11 +700,5 @@ public class UpdateEngravingScreen extends  JDialog{
         this.orderSearchScreen = orderSearchScreen;
     }
 
-    /*
-    public static void main(String[] args) {
-        UpdateEngravingScreen updateEngravingScreen = new UpdateEngravingScreen();
-        updateEngravingScreen.setupScreen();
-        updateEngravingScreen.setVisible(true);
-    }
-    */
+
 }

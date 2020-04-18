@@ -48,6 +48,9 @@ public class FilmProcessingScreen extends  JDialog{
 
     DateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");
 
+    //("<html>There was an error in provided order details</html>", SwingConstants.CENTER)
+    JLabel generalErrorLbl = new JLabel("<html>There was an error in provided order details</html>", SwingConstants.CENTER);
+
     JLabel nameLbl = new JLabel("NAME:");
     JLabel emailLbl = new JLabel("Email:");
     JLabel telLbl = new JLabel("TEL:");
@@ -436,11 +439,17 @@ public class FilmProcessingScreen extends  JDialog{
         toPayFld.setBackground(Color.white);
 
         getContentPane().add(printBtn);
-        printBtn.setBounds(200, 800, 100, 25);
+        printBtn.setBounds(150, 800, 100, 25);
 
         getContentPane().add(cancelBtn);
-        cancelBtn.setBounds(600, 800, 100, 25);
+        cancelBtn.setBounds(650, 800, 100, 25);
 
+
+        getContentPane().add(generalErrorLbl);
+        generalErrorLbl.setBounds(240, 820, 400, 35);
+        generalErrorLbl.setForeground(Color.red);
+        generalErrorLbl.setFont(new Font("Serif", Font.BOLD, 18));
+        generalErrorLbl.setVisible(false);
 
         ButtonListener buttonListener = new ButtonListener();
         printBtn.addActionListener(buttonListener);
@@ -1036,6 +1045,7 @@ public class FilmProcessingScreen extends  JDialog{
 
     private void saveOrder() {
 
+        generalErrorLbl.setVisible(false);
         if (isFormDataValid() && arePaymentFieldsValid()) {
 
             totalPrice =Double.parseDouble(totalFld.getText());
@@ -1045,8 +1055,6 @@ public class FilmProcessingScreen extends  JDialog{
             deposit = Double.parseDouble(depositFld.getText());
             balance = grandTotal  - deposit;
             balance = Math.floor(balance * 100) / 100;
-
-
 
             String filmTypeStr = filmTypeCombo.getSelectedItem().toString();
 
@@ -1099,6 +1107,8 @@ public class FilmProcessingScreen extends  JDialog{
             JOptionPane.showMessageDialog(this, "Your orderId is: " + orderId);
             this.setVisible(false);
 
+        } else {
+            generalErrorLbl.setVisible(true);
         }
 
     }

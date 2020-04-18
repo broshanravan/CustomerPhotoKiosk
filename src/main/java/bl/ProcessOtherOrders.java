@@ -11,7 +11,6 @@ public class ProcessOtherOrders {
 
     CustomerInventory customerInventory = new CustomerInventoryImpl();
     OtherOrdersInventory otherOrdersInventory = new OtherOrdersInventoryImpl();
-    FilmProceccingOrderInventory filmProcessingOrderInventory =  new FilmProceccingOrderInventoryImpl();
 
 
 
@@ -23,10 +22,6 @@ public class ProcessOtherOrders {
         return  otherOrdersInventory.orderExists(orderId,String.valueOf(OrderType.PhotoGift));
     }
 
-    public boolean doesFilmProcessingOrderExist(long orderId){
-        return filmProcessingOrderInventory.filmProcessingOrderExists(orderId);
-    }
-
     public long saveOrder(OtherOrderTypes order, Customer customer){
         long orderId = 0;
         customerInventory.saveCustomer(customer);
@@ -36,7 +31,9 @@ public class ProcessOtherOrders {
         return orderId;
     }
 
-
+    public void closeOrder(long orderId){
+        otherOrdersInventory.closeOrder(orderId);
+    }
 
     public OtherOrderTypes getPhotoGiftOrder(Long orderNumber ){
         OtherOrderTypes photoGiftOrder = otherOrdersInventory.retrieveOtherOrder(orderNumber,OrderType.PhotoGift.toString());

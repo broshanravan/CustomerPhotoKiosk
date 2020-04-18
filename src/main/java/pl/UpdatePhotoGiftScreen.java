@@ -70,6 +70,7 @@ public class UpdatePhotoGiftScreen  extends JDialog {
     JLabel orderNumberLbl = new JLabel("Order Number:");
 
     JLabel closedLbl = new JLabel("<html>This order has been<br/>closed</html>", SwingConstants.CENTER);
+    JLabel generalErrorLbl = new JLabel("<html>There was an error in provided order details</html>", SwingConstants.CENTER);
 
     JLabel nameLbl = new JLabel("NAME:");
     JLabel emailLbl = new JLabel("Email:");
@@ -367,6 +368,11 @@ public class UpdatePhotoGiftScreen  extends JDialog {
             totalFld.setText(totalStr);
             depositFld.setText(depositStr);
             toPayFld.setText(toPayStr);
+
+            if(photoGiftOrder.isClosed()){
+                disableFields();
+                closedLbl.setVisible(true);
+            }
         }
 
     }
@@ -413,6 +419,46 @@ public class UpdatePhotoGiftScreen  extends JDialog {
         return jobNumber;
     }
 
+    private void closeOrder(){
+        int answer = JOptionPane.showConfirmDialog(this ,"Are you sure you would like to close Photo Gift order number " + jobNumber +"?");
+
+        System.out.println(answer);
+
+        if(answer == 0) {
+            System.out.println("being Closed");
+            processOtherOrders.closeOrder(jobNumber);
+            setVisible(false);
+        }else if(answer == 2){
+            System.out.println("Closing canceled");
+            setVisible(false);
+        }else {
+            System.out.println("Not being Closed");
+        }
+
+    }
+
+    private void disableFields(){
+        nameFld.setEnabled(false);
+        emailFld.setEnabled(false);
+        telFld.setEnabled(false);
+        orderNumberFld.setEnabled(false);
+        custInstructionArea.setEnabled(false);
+        adminInstructionArea.setEnabled(false);
+
+        dateValueLbl.setEnabled(false);
+
+        totalFld.setEnabled(false);
+        vatFld.setEnabled(false);
+        depositFld.setEnabled(false);
+        toPayFld.setEnabled(false);
+
+        closeBtn.setEnabled(false);
+        printBtn.setEnabled(false);
+
+        collectionDatePicker.setEnabled(false);
+    }
+
+
     private class ButtonListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
@@ -420,8 +466,8 @@ public class UpdatePhotoGiftScreen  extends JDialog {
             String actionCommant = e.getActionCommand();
             if (actionCommant.equals("Update & Print")) {
                 savePhotoGiftOrder();
-            } else if (e.getActionCommand().equals("complete & Close")) {
-
+            } else if (e.getActionCommand().equals("Complete & Close")) {
+                closeOrder();
             } else if (e.getActionCommand().equals("Cancel")) {
                 setVisible(false);
             }

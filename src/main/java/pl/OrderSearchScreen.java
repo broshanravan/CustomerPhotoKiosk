@@ -1,5 +1,6 @@
 package pl;
 
+import bl.ProcessFilmDevelopmentOrder;
 import bl.ProcessOtherOrders;
 import bl.beens.Customer;
 import bl.beens.FilmProcessingOrder;
@@ -25,8 +26,10 @@ public class OrderSearchScreen extends JFrame {
 
     OtherOrdersInventory otherOrdersInventory = new OtherOrdersInventoryImpl();
     ProcessOtherOrders processOtherOrders = new ProcessOtherOrders();
+    ProcessFilmDevelopmentOrder rocessFilmDevelopmentOrder = new  ProcessFilmDevelopmentOrder ();
     CustomerInventory customerInventory = new CustomerInventoryImpl();
     FilmProceccingOrderInventory filmProceccingOrderInventory = new FilmProceccingOrderInventoryImpl();
+
 
 
 
@@ -171,7 +174,8 @@ public class OrderSearchScreen extends JFrame {
 
         if(isFormValid()) {
             if (filmProceccingOrderInventory.filmProcessingOrderExists(orderId)){
-                filmProcessingOrder = filmProceccingOrderInventory.retrieveProcessingOrder(orderId);
+                //filmProcessingOrder = filmProceccingOrderInventory.retrieveProcessingOrder(orderId);
+                filmProcessingOrder = rocessFilmDevelopmentOrder.getFilmProcessingOrder(orderId);
             }
 
             return filmProcessingOrder;
@@ -194,22 +198,18 @@ public class OrderSearchScreen extends JFrame {
 
     private void findOrder(long orderId, OrderType orderType){
 
-
-
         if(orderType.equals(OrderType.FilmProcessing)){
-            //FilmProcessingOrder filmProcessingOrder = findFilmProcessingOrder(orderId);
-            if(processOtherOrders.doesFilmProcessingOrderExist(orderId)) {
+            if(rocessFilmDevelopmentOrder.doesFilmProcessingOrderExist(orderId)) {
                 FilmProcessingOrder filmProcessingOrder = findFilmProcessingOrder(orderId);
                 customer = getCustomerByEmail (filmProcessingOrder.getCustomerEmail()) ;
                 customer.displayCustomerDetails();
-                UpdateFilmProcessingOrderScreen updateFilmProcessingOrderScreen = new UpdateFilmProcessingOrderScreen(customer,                                                             filmProcessingOrder, this);
+                UpdateFilmProcessingOrderScreen updateFilmProcessingOrderScreen = new UpdateFilmProcessingOrderScreen(customer, filmProcessingOrder, this);
                 updateFilmProcessingOrderScreen.setupScreen();
                 updateFilmProcessingOrderScreen.setVisible(true);
                 setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(this, "Film Processing orderNumber " + orderId + " does exist, Please try again");
             }
-
 
       } else if(orderType.equals(OrderType.Engraving)){
 
@@ -226,7 +226,6 @@ public class OrderSearchScreen extends JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "Engraving orderNumber " + orderId + " does exist, Please try again");
             }
-
 
 
       } else if(orderType.equals(OrderType.PhotoGift)){

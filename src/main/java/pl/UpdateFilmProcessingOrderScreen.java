@@ -66,7 +66,7 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
     JLabel dateValueLbl = new JLabel(dateFormat.format(new Date()));
 
     JLabel closedLbl = new JLabel("<html>This order has been<br/>closed</html>", SwingConstants.CENTER);
-
+    JLabel generalErrorLbl = new JLabel("<html>There was an error in provided order details</html>", SwingConstants.CENTER);
 
     JLabel collectionDateLbl = new JLabel("Collection Date:");
     JLabel printSizeLbl = new JLabel("Print Size:");
@@ -174,6 +174,8 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
         getContentPane().add(closedLbl);
 
+
+        /*********************************************** transaction completed  **************************************************************/
         closedLbl.setFont(new Font("Serif", Font.BOLD, 80));
         closedLbl.setBounds(30,350,800,200);
         closedLbl.setForeground(Color.red);
@@ -284,7 +286,6 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
 
         printSizeGroup.add(film6x8Radio);
-        //film6x8Radio.setSelected(true);
         printSizeGroup.add(film6x4Radio);
         printSizeGroup.add(film5x7Radio);
 
@@ -481,6 +482,11 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
         getContentPane().add(cancelBtn);
         cancelBtn.setBounds(700, 810, 150, 25);
 
+        getContentPane().add(generalErrorLbl);
+        generalErrorLbl.setBounds(240, 830, 400, 35);
+        generalErrorLbl.setForeground(Color.red);
+        generalErrorLbl.setFont(new Font("Serif", Font.BOLD, 18));
+        generalErrorLbl.setVisible(false);
 
         ButtonListener buttonListener = new ButtonListener();
         printBtn.addActionListener(buttonListener);
@@ -590,7 +596,60 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
             setSelectedRadioButtons(filmProcessingOrder);
 
+            if(filmProcessingOrder.isCompleted()){
+                closedLbl.setVisible(true);
+                disableAllFields();
+            }
+
         }
+
+     }
+
+
+    private void disableAllFields(){
+         totalFld.setEnabled(false);
+         vatFld.setEnabled(false);
+         depositFld.setEnabled(false);
+         toPayFld.setEnabled(false);
+
+         film6x4Radio.setEnabled(false);
+         film5x7Radio.setEnabled(false);
+         film6x8Radio.setEnabled(false);
+
+
+         hundred10Radio.setEnabled(false);
+         hundred35Radio.setEnabled(false);
+         hundred20Radio.setEnabled(false);
+
+         colorRadio.setEnabled(false);
+         bAwRadio.setEnabled(false);
+
+         withBorderRadio.setEnabled(false);
+         noBorderRadio.setEnabled(false);
+         glossyRadio.setEnabled(false);
+
+         oneRadio.setEnabled(false);
+         twoRadio.setEnabled(false);
+         threeRadio.setEnabled(false);
+         fourRadio.setEnabled(false);
+         otherRadio.setEnabled(false);
+
+         oneHRRadio.setEnabled(false);
+         twentyFourHr4Radio.setEnabled(false);
+
+          mafiFourHr4Radio.setEnabled(false);
+
+
+         filmTypeCombo.setEnabled(false);
+
+          closeBtn.setEnabled(false);
+          printBtn.setEnabled(false);
+
+        nameFld.setEnabled(false);
+        emailFld.setEnabled(false);
+        telFld.setEnabled(false);
+
+        datePicker.setEnabled(false);
 
      }
 
@@ -1039,6 +1098,7 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
     private void saveOrder() {
 
+        generalErrorLbl.setVisible(false);
         if (isFormDataValid() && arePaymentFieldsValid()) {
 
             String filmTypeStr = filmTypeCombo.getSelectedItem().toString();
@@ -1082,7 +1142,7 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
             filmProcessingOrder.setOrderNum(orderId);
 
-            //customer.displayCustomerDetails();
+
 
             processFilmDevelopmentOrder.saveFilmProcessingOrder(filmProcessingOrder, customer);
             customerInventory.saveCustomer(customer);
@@ -1090,8 +1150,29 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
             this.setVisible(false);
             orderSearchScreen.setVisible(false);
 
+        }else {
+            generalErrorLbl.setVisible(true);
         }
 
+    }
+
+    private void closeOrder(){
+
+
+        int answer = JOptionPane.showConfirmDialog(this ,"Are you sure you would like to close Film Processing order number " + orderId +"?");
+
+        System.out.println(answer);
+
+        if(answer == 0) {
+            System.out.println("being Closed");
+            processFilmDevelopmentOrder.closeFilmProcessingOrderExist(orderId);
+            setVisible(false);
+        }else if(answer == 2) {
+            System.out.println("Closing canceled");
+            setVisible(false);
+        }else {
+            System.out.println("Not being Closed");
+        }
     }
 
 
@@ -1103,6 +1184,8 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
             }  else if (e.getActionCommand().equals("Cancel")) {
                 setVisible(false);
+            } else if (e.getActionCommand().equals("Complete & Close")) {
+                closeOrder();
             }
 
         }
@@ -1124,22 +1207,6 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
     }
 
 
-    /*
-    public static void main(String[] args){
-
-        CustomerInventory customerInventory = new CustomerInventoryImpl();
-        Customer customer = customerInventory.findCustomer("lahehn@hotmail.com");
-        customer.displayCustomerDetails();
-        FilmProceccingOrderInventory filmProcessingOrderInventory = new FilmProceccingOrderInventoryImpl();
-        FilmProcessingOrder filmProcessingOrder= filmProcessingOrderInventory.retrieveProcessingOrder(1);
-
-
-        UpdateFilmProcessingOrderScreen updateFilmProcessingOrderScreen = new UpdateFilmProcessingOrderScreen(customer,filmProcessingOrder);
-        updateFilmProcessingOrderScreen.setupScreen();
-        updateFilmProcessingOrderScreen.populateForm();
-        updateFilmProcessingOrderScreen.setVisible(true);
-    }
-    */
 
 
 

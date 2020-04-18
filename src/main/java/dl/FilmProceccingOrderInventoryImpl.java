@@ -103,12 +103,12 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
         }
         try {
             String updateQuery = "UPDATE FILM_PRECESS_ORDERS SET" +
-                    " COMPLETED_CLOSED = Y" +
-                    " WHERE ORDER_ID =" + orderId;
+                    " COMPLETED_CLOSED = 'Y'" +
+                    " WHERE ORDER_NUMBER  =" + orderId;
 
             Statement statement = con.createStatement();
 
-            statement.executeQuery(updateQuery);
+            statement.execute(updateQuery);
 
 
 

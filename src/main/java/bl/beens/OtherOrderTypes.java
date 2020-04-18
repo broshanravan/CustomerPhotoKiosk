@@ -19,6 +19,8 @@ public class OtherOrderTypes {
     private double deposit;
     private double balance;
 
+    private boolean closed;
+
     public OtherOrderTypes(){
 
     }
@@ -138,6 +140,14 @@ public class OtherOrderTypes {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public boolean isClosed() {
+        return closed;
+    }
+
+    public void setClosed(boolean closed) {
+        this.closed = closed;
     }
 
     public void displayOrder() {

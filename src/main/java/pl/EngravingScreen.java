@@ -72,6 +72,8 @@ public class EngravingScreen extends JFrame {
     JLabel telLbl = new JLabel("Mobile No:");
     JLabel jobTypeLbl = new JLabel("Job Type:");
     String[] jobTypeList = { "Please Select", "Engraving", "Photo Mug", "Film Dev Only", "Film Printing", "Film to CD"};
+
+    JLabel generalErrorLbl = new JLabel("<html>There was an error in provided order details</html>", SwingConstants.CENTER);
     JComboBox jobTypeCombo = new JComboBox(jobTypeList);
 
 
@@ -185,9 +187,6 @@ public class EngravingScreen extends JFrame {
         telFld.setBounds(120,280,220,25);
 
 
-
-
-
         getContentPane().add(custInstructionLbl);
         custInstructionLbl.setOpaque(false);
         custInstructionLbl.setBounds(20,330,120,25);
@@ -195,9 +194,6 @@ public class EngravingScreen extends JFrame {
         getContentPane().add(custInstructionArea);
         custInstructionArea.setBorder( BorderFactory.createLineBorder(Color.BLACK));
         custInstructionArea.setBounds(60,370,660,100);
-
-        //getContentPane().add(printLblBtn);
-        //printLblBtn.setBounds(620,480,100,25);
 
 
         getContentPane().add(adminFillLbl);
@@ -292,6 +288,12 @@ public class EngravingScreen extends JFrame {
         addDepositFieldsListeners();
         addTotalPriceFieldsListeners();
 
+        getContentPane().add(generalErrorLbl);
+        generalErrorLbl.setBounds(180, 850, 400, 35);
+        generalErrorLbl.setForeground(Color.red);
+        generalErrorLbl.setFont(new Font("Serif", Font.BOLD, 18));
+        generalErrorLbl.setVisible(false);
+
     }
 
     private void findCustomer(){
@@ -319,6 +321,7 @@ public class EngravingScreen extends JFrame {
 
     private long saveEngraingOrder(){
         long orderNumber = 0;
+        generalErrorLbl.setVisible(false);
         if(isFormDataValid()){
             String customerInstruction = custInstructionArea.getText();
             String aminInstruction = adminInstructionArea.getText();
@@ -349,6 +352,8 @@ public class EngravingScreen extends JFrame {
             customerInventory.saveCustomer(customer);
             JOptionPane.showMessageDialog(this, "Your orderId is: " + orderNumber);
             this.setVisible(false);
+        } else{
+            generalErrorLbl.setVisible(true);
         }
 
 
@@ -571,10 +576,6 @@ public class EngravingScreen extends JFrame {
         return isValid;
     }
 
-    public void populateScreen(){
-
-    }
-
 
     public Customer getCustomer() {
         return customer;
@@ -584,6 +585,7 @@ public class EngravingScreen extends JFrame {
         this.customer = customer;
     }
 
+    /*
     public OtherOrderTypes getOtherOrder() {
         return otherOrder;
     }
@@ -599,7 +601,7 @@ public class EngravingScreen extends JFrame {
     public void setFilmProcessingScreen(FilmProcessingScreen filmProcessingScreen) {
         this.filmProcessingScreen = filmProcessingScreen;
     }
-
+    */
     private class ButtonListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {

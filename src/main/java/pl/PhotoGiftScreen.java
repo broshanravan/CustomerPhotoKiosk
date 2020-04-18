@@ -70,6 +70,8 @@ public class PhotoGiftScreen  extends JFrame {
     String[] jobTypeList = { "Please Select", "Engraving", "Photo Mug", "Film Dev Only", "Film Printing", "Film to CD"};
     JComboBox jobTypeCombo = new JComboBox(jobTypeList);
 
+    JLabel generalErrorLbl = new JLabel("<html>There was an error in provided order details</html>", SwingConstants.CENTER);
+
 
     JTextField nameFld = new JTextField();
     JTextField emailFld = new JTextField();
@@ -276,6 +278,12 @@ public class PhotoGiftScreen  extends JFrame {
         getContentPane().add(cancelBtn);
         cancelBtn.setBounds(620,820,100,40);
 
+        getContentPane().add(generalErrorLbl);
+        generalErrorLbl.setBounds(180, 850, 400, 35);
+        generalErrorLbl.setForeground(Color.red);
+        generalErrorLbl.setFont(new Font("Serif", Font.BOLD, 18));
+        generalErrorLbl.setVisible(false);
+
         ButtonListener buttonListener = new ButtonListener();
         printBtn.addActionListener(buttonListener);
         cancelBtn.addActionListener(buttonListener);
@@ -312,6 +320,7 @@ public class PhotoGiftScreen  extends JFrame {
 
     private long savePhotoGiftOrder(){
         long orderNumber = 0;
+        generalErrorLbl.setVisible(false);
         if(isFormDataValid()){
             String customerInstruction = custInstructionArea.getText();
             String aminInstruction = adminInstructionArea.getText();
@@ -342,6 +351,8 @@ public class PhotoGiftScreen  extends JFrame {
 
             JOptionPane.showMessageDialog(this, "Your order has been saved with order number: " + orderNumber );
             this.setVisible(false);
+        } else {
+            generalErrorLbl.setVisible(true);
         }
 
 
