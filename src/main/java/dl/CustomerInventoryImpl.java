@@ -9,6 +9,8 @@ public class CustomerInventoryImpl implements CustomerInventory {
     private static Connection con;
     private boolean hasData = false;
 
+    SystemAndNetworkProperties systemAndNetworkProperties = SystemAndNetworkProperties.getInstance();
+
     public CustomerInventoryImpl(){
 
     }
@@ -181,7 +183,7 @@ public class CustomerInventoryImpl implements CustomerInventory {
     private void getConnection(){
         try {
             Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("JDBC:sqlite:PHOTO_KIOSK.db");
+            con = DriverManager.getConnection("JDBC:sqlite:" + systemAndNetworkProperties.getDBFileLocation());
             initialize();
         }catch(ClassNotFoundException cnfx){
             cnfx.printStackTrace();

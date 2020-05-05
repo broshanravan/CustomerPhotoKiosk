@@ -13,25 +13,24 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class MainScreen extends JFrame {
+public class CustomerScreen extends JFrame{
 
     private int width = 520;
-    private int hight = 360;
+    private int hight = 320;
 
     JButton FilmProcBtn = new JButton("Film Processing");
     JButton PhotoGiftBtn = new JButton("Photo Gift");
     JButton engravingBtn = new JButton("Engraving");
-    JButton manageExistingOrders = new JButton("Manage Existing Orders");
 
     String fileName = "./logos/KodakLogo.jpg";
 
-    ButtonListener buttonListener = new ButtonListener();
+    CustomerScreen.ButtonListener buttonListener = new CustomerScreen.ButtonListener();
     ProcessOtherOrders processOtherOrders = new ProcessOtherOrders();
 
 
     public void setupScreen() {
 
-        setTitle("Customer Photo Kiosk (Admin Screen)");
+        setTitle("Customer Photo Kiosk");
         setResizable(false);
         getContentPane().setBackground(new Color(255, 255, 242));
         this.setLayout(null);
@@ -49,9 +48,6 @@ public class MainScreen extends JFrame {
         getContentPane().add(engravingBtn);
         engravingBtn.setBounds(350,120,150,150);
 
-        getContentPane().add(manageExistingOrders);
-        manageExistingOrders.setBounds(135,290,250,25);
-
 
         /*************************************************************** Adding Kodak logo to Panel **********************************************************************************/
 
@@ -63,7 +59,7 @@ public class MainScreen extends JFrame {
 
             JLabel logoLabel = new JLabel(LogoIcon);
             getContentPane().add(logoLabel);
-           logoLabel.setBounds(40,10,400,110);
+            logoLabel.setBounds(40,10,400,110);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,7 +68,6 @@ public class MainScreen extends JFrame {
         FilmProcBtn.addActionListener(buttonListener);
         PhotoGiftBtn.addActionListener(buttonListener);
         engravingBtn.addActionListener(buttonListener);
-        manageExistingOrders.addActionListener(buttonListener);
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
@@ -99,22 +94,13 @@ public class MainScreen extends JFrame {
                 EngravingScreen engravingScreen = new EngravingScreen();
                 engravingScreen.setupScreen();
                 engravingScreen.setVisible(true);
-            } else if (e.getActionCommand().equals("Manage Existing Orders")) {
-            OrderSearchScreen orderSearchScreen = new OrderSearchScreen();
-            orderSearchScreen.setupScreen();
-            orderSearchScreen.setVisible(true);
-        }
-
-
-
-
+            }
         }
     }
 
     public static void main(String[] args){
-        MainScreen mainScreen = new  MainScreen();
-        mainScreen.setupScreen();
-        mainScreen.setVisible(true);
+        CustomerScreen customerScreen = new  CustomerScreen();
+        customerScreen.setupScreen();
+        customerScreen.setVisible(true);
     }
-
 }

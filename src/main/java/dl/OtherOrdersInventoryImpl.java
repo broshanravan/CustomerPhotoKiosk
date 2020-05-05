@@ -10,6 +10,8 @@ import java.util.List;
 
 public class OtherOrdersInventoryImpl implements OtherOrdersInventory {
 
+    SystemAndNetworkProperties systemAndNetworkProperties = SystemAndNetworkProperties.getInstance();
+
     Connection con = null;
 
     private boolean hasData = false;
@@ -434,7 +436,7 @@ public class OtherOrdersInventoryImpl implements OtherOrdersInventory {
     private void getConnection(){
         try {
             Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("JDBC:sqlite:PHOTO_KIOSK.db");
+            con = DriverManager.getConnection("JDBC:sqlite:" + systemAndNetworkProperties.getDBFileLocation());
             initialize();
         }catch(ClassNotFoundException cnfx){
             cnfx.printStackTrace();

@@ -1,0 +1,7 @@
+[
+	{
+		"LablePrinterSpec" : "label Printer address",
+		"ReceiptPrinterSpec" : "Receipt Printer address",
+		"DBLocation" : "databases/PHOTO_KIOSK.db"
+	}	
+]

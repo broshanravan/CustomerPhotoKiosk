@@ -11,6 +11,8 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
     Connection con = null;
     private boolean hasData = false;
 
+    SystemAndNetworkProperties systemAndNetworkProperties = SystemAndNetworkProperties.getInstance();
+
     public boolean filmProcessingOrderExists(long orderNumber){
         boolean exists = false;
         if (!isConnectionValid()){
@@ -298,7 +300,7 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
     private void getConnection(){
         try {
             Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("JDBC:sqlite:PHOTO_KIOSK.db");
+            con = DriverManager.getConnection("JDBC:sqlite:" + systemAndNetworkProperties.getDBFileLocation());
             initialize();
         }catch(ClassNotFoundException cnfx){
             cnfx.printStackTrace();
