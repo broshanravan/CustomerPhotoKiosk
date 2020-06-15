@@ -3,6 +3,7 @@ package pl;
 import bl.ProcessOtherOrders;
 import bl.beens.Customer;
 import bl.beens.OtherOrderTypes;
+import bl.beens.PrinterServices;
 import bl.enums.OrderType;
 import dl.CustomerInventory;
 import dl.CustomerInventoryImpl;
@@ -411,6 +412,13 @@ public class UpdatePhotoGiftScreen  extends JDialog {
 
             processOtherOrders.saveOrder(photoGiftOrder,customer);
             customerInventory.saveCustomer(customer);
+            PrinterServices printerSernices = new PrinterServices();
+            printerSernices.setCustomer(customer);
+            printerSernices.setOrder(photoGiftOrder);
+            printerSernices.setOrderType(OrderType.Engraving);
+            printerSernices.printReceipt();
+            printerSernices.printReceipt();
+
             JOptionPane.showMessageDialog(this, "Order Number: " + jobNumber +" is updated");
             this.setVisible(false);
         }

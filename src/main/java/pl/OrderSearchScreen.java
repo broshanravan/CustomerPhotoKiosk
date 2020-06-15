@@ -99,49 +99,6 @@ public class OrderSearchScreen extends JFrame {
 
     }
 
-/*
-    private OtherOrderTypes findOtherOrder(long orderID ,OrderType orderType){
-
-        OtherOrderTypes otherOrder = null;
-
-        if(isFormValid()) {
-
-
-            otherOrder = otherOrdersInventory.retrieveOtherOrder(orderID, orderType.toString());
-
-            if (otherOrder.getJobNumber() == 0 || otherOrder.getEmail() == null){
-
-                orderErrorLbl.setVisible(true);
-                orderNumFld.setBorder(BorderFactory.createLineBorder(Color.RED));
-                jobTypeCombo.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                JOptionPane.showMessageDialog(this, " Order Number : " + orderID +" of type" +  orderType.toString() + " does not exist" +
-                        ". Please try again");
-               }
-            }else {
-                orderErrorLbl.setVisible(false);
-                orderNumFld.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                jobTypeCombo.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-                if (orderType.toString().equalsIgnoreCase("Engraving")){
-                    UpdateEngravingScreen updateEngravingScreen = new UpdateEngravingScreen(otherOrder, customer);
-                    updateEngravingScreen.setupScreen();
-                    updateEngravingScreen.setVisible(true);
-
-                } else if (orderType.toString().equalsIgnoreCase("PhotoGiit")){
-                    UpdatePhotoGiftScreen updatePhotoGiftScreen = new UpdatePhotoGiftScreen(otherOrder, customer);
-                    updatePhotoGiftScreen.setupScreen();
-                    updatePhotoGiftScreen.setVisible(true);
-
-                }
-
-                setVisible(false);
-            }
-
-
-        return otherOrder;
-    }
-
-*/
     private boolean isFormValid(){
         boolean isvalid =true;
         String orderNumberStr = orderNumFld.getText();

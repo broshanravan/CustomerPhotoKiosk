@@ -3,6 +3,7 @@ package pl;
 import bl.ProcessOtherOrders;
 import bl.beens.Customer;
 import bl.beens.OtherOrderTypes;
+import bl.beens.PrinterServices;
 import bl.enums.OrderType;
 import dl.CustomerInventory;
 import dl.CustomerInventoryImpl;
@@ -345,6 +346,13 @@ public class PhotoGiftScreen  extends JFrame {
             );
 
             Customer customer = new Customer(customerName,  telephone, customerEmail) ;
+
+            PrinterServices printerSernices = new PrinterServices();
+            printerSernices.setCustomer(customer);
+            printerSernices.setOrder(photoGiftOrder);
+            printerSernices.setOrderType(OrderType.PhotoGift);
+            printerSernices.printReceipt();
+            printerSernices.printReceipt();
 
             orderNumber =processOtherOrders.saveOrder(photoGiftOrder, customer);
 

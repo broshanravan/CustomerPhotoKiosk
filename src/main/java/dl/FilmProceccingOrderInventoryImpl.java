@@ -1,5 +1,6 @@
 package dl;
 
+import bl.beens.Customer;
 import bl.beens.FilmProcessingOrder;
 import bl.enums.FilmType;
 
@@ -464,12 +465,18 @@ public class FilmProceccingOrderInventoryImpl implements FilmProceccingOrderInve
 
     public static void main(String[] args){
         FilmProceccingOrderInventoryImpl filmProceccingOrderInv = new FilmProceccingOrderInventoryImpl();
+        CustomerInventory customerInventory = new CustomerInventoryImpl();
+
 
         List<FilmProcessingOrder> filmProcessingOrderList= filmProceccingOrderInv.getAllProcessingOrders();
-
         for (FilmProcessingOrder  filmProcessingOrder: filmProcessingOrderList){
             filmProcessingOrder.displayFilmProcessingOrder();
         }
+
+
+
+
+
 
         /*
         List<String> emailsList = filmProceccingOrderInv.getAllorderEmails();

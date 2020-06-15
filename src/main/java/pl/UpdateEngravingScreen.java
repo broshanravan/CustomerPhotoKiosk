@@ -3,6 +3,7 @@ package pl;
 import bl.ProcessOtherOrders;
 import bl.beens.Customer;
 import bl.beens.OtherOrderTypes;
+import bl.beens.PrinterServices;
 import bl.enums.OrderType;
 import dl.CustomerInventory;
 import dl.CustomerInventoryImpl;
@@ -338,6 +339,9 @@ public class UpdateEngravingScreen extends  JDialog{
 
         if(engravingOrder != null) {
 
+            Date orderDate =  engravingOrder.getOrderDate();
+            dateValueLbl.setText(dateFormat.format(orderDate));
+
             jobNumber = engravingOrder.getJobNumber();
             orderNumberFld.setText(String.valueOf(engravingOrder.getJobNumber()));
 
@@ -451,6 +455,12 @@ public class UpdateEngravingScreen extends  JDialog{
 
             processOtherOrders.saveOrder(engravingOrder, customer);
 
+            PrinterServices printerSernices = new PrinterServices();
+            printerSernices.setCustomer(customer);
+            printerSernices.setOrder(engravingOrder);
+            printerSernices.setOrderType(OrderType.Engraving);
+            printerSernices.printReceipt();
+            printerSernices.printReceipt();
 
             JOptionPane.showMessageDialog(this, "Your orderId is: " + orderNumber);
             this.setVisible(false);

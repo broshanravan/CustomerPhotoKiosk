@@ -3,6 +3,7 @@ package pl;
 
 import bl.beens.Customer;
 import bl.beens.OtherOrderTypes;
+import bl.beens.PrinterServices;
 import bl.enums.OrderType;
 import dl.CustomerInventory;
 import dl.CustomerInventoryImpl;
@@ -350,6 +351,12 @@ public class EngravingScreen extends JFrame {
 
             orderNumber = otherOrdersInventory.saveOrder(engravingOrder);
             customerInventory.saveCustomer(customer);
+            PrinterServices printerSernices = new PrinterServices();
+            printerSernices.setCustomer(customer);
+            printerSernices.setOrder(engravingOrder);
+            printerSernices.setOrderType(OrderType.Engraving);
+            printerSernices.printReceipt();
+            printerSernices.printReceipt();
             JOptionPane.showMessageDialog(this, "Your orderId is: " + orderNumber);
             this.setVisible(false);
         } else{

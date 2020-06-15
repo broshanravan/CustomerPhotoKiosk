@@ -3,7 +3,9 @@ package pl;
 import bl.ProcessFilmDevelopmentOrder;
 import bl.beens.Customer;
 import bl.beens.FilmProcessingOrder;
+import bl.beens.PrinterServices;
 import bl.enums.FilmType;
+import bl.enums.OrderType;
 import dl.CustomerInventory;
 import dl.CustomerInventoryImpl;
 import org.jdatepicker.impl.DateComponentFormatter;
@@ -1103,7 +1105,14 @@ public class FilmProcessingScreen extends  JDialog{
 
 
             long orderId = processOtherOrders.saveFilmProcessingOrder(filmProcessingOrder, customer);
-            //customerInventory.saveCustomer(customer);
+
+            PrinterServices printerSernices = new PrinterServices();
+            printerSernices.setCustomer(customer);
+            printerSernices.setFilmProcessingOrder(filmProcessingOrder);
+            printerSernices.setOrderType(OrderType.FilmProcessing);
+            printerSernices.printReceipt();
+            printerSernices.printReceipt();
+
             JOptionPane.showMessageDialog(this, "Your orderId is: " + orderId);
             this.setVisible(false);
 

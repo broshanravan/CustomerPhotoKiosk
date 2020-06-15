@@ -1,5 +1,6 @@
 package dl;
 
+import bl.beens.FilmProcessingOrder;
 import bl.beens.SystemProperties;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -29,17 +30,18 @@ public class SystemAndNetworkProperties {
         Map<String,String> propertiesMap = new HashMap<String,String>();
         File jsonFile = new File(refJsonFileName);
         try {
-            BufferedReader bufferReader = new BufferedReader(new FileReader(jsonFile));
+
             Gson gson = new Gson();
+            String propertiesJson;
 
-            List<SystemProperties> propertiesItemList = gson.fromJson(bufferReader,new TypeToken<List<SystemProperties>>(){}.getType());
-            System.out.println("The length of Items list Is: " + propertiesItemList.size());
-            //barcodeList = new ArrayList<String>();
+            SystemProperties systemProperties = gson.fromJson(new FileReader("resources/system_properties.json"), SystemProperties.class);
 
-            SystemProperties property =propertiesItemList.get(0);
-            labelPrinterAddress = property.getLablePrinterSpec();
-            receiptrinterAddress = property.getReceiptPrinterSpec();
-            dbFileLocation = property.getDBLocation();
+
+
+            labelPrinterAddress = systemProperties.getLablePrinterSpec();
+            receiptrinterAddress = systemProperties.getReceiptPrinterSpec();
+            dbFileLocation = systemProperties.getdBLocation();
+
 
 
         } catch(FileNotFoundException nfe) {

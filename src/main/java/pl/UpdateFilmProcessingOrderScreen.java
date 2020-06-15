@@ -3,7 +3,9 @@ package pl;
 import bl.ProcessFilmDevelopmentOrder;
 import bl.beens.Customer;
 import bl.beens.FilmProcessingOrder;
+import bl.beens.PrinterServices;
 import bl.enums.FilmType;
+import bl.enums.OrderType;
 import dl.CustomerInventory;
 import dl.CustomerInventoryImpl;
 import dl.FilmProceccingOrderInventory;
@@ -63,7 +65,7 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
     JLabel orderNumberLbl = new JLabel("Order Number:");
 
     JLabel dateLbl = new JLabel(" Order Date:");
-    JLabel dateValueLbl = new JLabel(dateFormat.format(new Date()));
+    JLabel dateValueLbl = new JLabel("");
 
     JLabel closedLbl = new JLabel("<html>This order has been<br/>closed</html>", SwingConstants.CENTER);
     JLabel generalErrorLbl = new JLabel("<html>There was an error in provided order details</html>", SwingConstants.CENTER);
@@ -532,13 +534,12 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
              emailFld.setText(customer.getEmail());
              telFld.setText(customer.getMobileNum());
              customerId = customer.getCustomerId();
-
         }
-
-
 
         if(filmProcessingOrder != null){
             orderNumberFld.setText(String.valueOf(filmProcessingOrder.getOrderNum()));
+            Date orderDate =  filmProcessingOrder.getOrderDate();
+            dateValueLbl.setText(dateFormat.format(orderDate));
 
             deposit = filmProcessingOrder.getDeposit();
             String depositStr = String.valueOf(deposit);
@@ -1146,6 +1147,13 @@ public class UpdateFilmProcessingOrderScreen extends JDialog {
 
             processFilmDevelopmentOrder.saveFilmProcessingOrder(filmProcessingOrder, customer);
             customerInventory.saveCustomer(customer);
+            PrinterServices printerSernices = new PrinterServices();
+            printerSernices.setCustomer(customer);
+            printerSernices.setFilmProcessingOrder(filmProcessingOrder);
+            printerSernices.setOrderType(OrderType.FilmProcessing);
+            printerSernices.printReceipt();
+            printerSernices.printReceipt();
+
             JOptionPane.showMessageDialog(this, "Order number " + orderId + " has been updated successfully");
             this.setVisible(false);
             orderSearchScreen.setVisible(false);

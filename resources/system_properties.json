@@ -1,7 +1,5 @@
-[
-	{
-		"LablePrinterSpec" : "label Printer address",
-		"ReceiptPrinterSpec" : "Receipt Printer address",
-		"DBLocation" : "databases/PHOTO_KIOSK.db"
-	}	
-]
+{
+	"lablePrinterSpec":"169.254.133.182,Host=HPB985B6",
+	"receiptPrinterSpec":"169.254.133.182,Host=HPB985B6",
+	"dBLocation":"databases/PHOTO_KIOSK.db"
+}

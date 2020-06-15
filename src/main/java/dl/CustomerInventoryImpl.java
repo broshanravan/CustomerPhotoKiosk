@@ -15,6 +15,12 @@ public class CustomerInventoryImpl implements CustomerInventory {
 
     }
 
+    /**
+     * To retrieve the  dtails of a perticular
+     * customer useing their email
+     * @param email
+     * @return
+     */
 
     public Customer findCustomer(String email){
         Customer customer = new Customer();

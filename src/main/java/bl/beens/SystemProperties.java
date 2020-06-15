@@ -2,31 +2,31 @@ package bl.beens;
 
 public class SystemProperties {
 
-   private String LablePrinterSpec;
-   private String ReceiptPrinterSpec;
-   private String DBLocation;
+   private String lablePrinterSpec;
+   private String receiptPrinterSpec;
+   private String dBLocation;
 
     public String getLablePrinterSpec() {
-        return LablePrinterSpec;
+        return lablePrinterSpec;
     }
 
-    public void setLablePrinterSpec(String LablePrinterSpec) {
-        this.LablePrinterSpec = LablePrinterSpec;
+    public void setLablePrinterSpec(String lablePrinterSpec) {
+        this.lablePrinterSpec = lablePrinterSpec;
     }
 
     public String getReceiptPrinterSpec() {
-        return ReceiptPrinterSpec;
+        return receiptPrinterSpec;
     }
 
     public void setReceiptPrinterSpec(String receiptPrinterSpec) {
-        ReceiptPrinterSpec = receiptPrinterSpec;
+        this.receiptPrinterSpec = receiptPrinterSpec;
     }
 
-    public String getDBLocation() {
-        return DBLocation;
+    public String getdBLocation() {
+        return dBLocation;
     }
 
-    public void setDBLocation(String DBLocation) {
-        this.DBLocation = DBLocation;
+    public void setdBLocation(String dBLocation) {
+        this.dBLocation = dBLocation;
     }
 }
