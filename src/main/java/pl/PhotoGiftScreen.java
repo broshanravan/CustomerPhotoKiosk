@@ -86,9 +86,9 @@ public class PhotoGiftScreen  extends JFrame {
     JLabel adminInstructionLbl = new JLabel("Special Instruction:");
     JTextArea adminInstructionArea = new JTextArea();
 
-    JLabel totaLbl = new JLabel("Total Price : £");
-    JLabel depositeLbl = new JLabel("Deposit :      £");
-    JLabel vatLbl = new JLabel("VAT 17.5% :   £");
+    JLabel totaLbl = new JLabel("Total Price :£");
+    JLabel depositeLbl = new JLabel("Deposit :£");
+    JLabel vatLbl = new JLabel("VAT 17.5% :£");
     JLabel toPayLbl = new JLabel("Left to Pay : £");
 
     JTextField totalFld = new JTextField();

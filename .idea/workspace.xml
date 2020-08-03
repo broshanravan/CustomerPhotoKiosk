@@ -1,0 +1,1202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7da086a9-3b11-4827-8ef5-92fa5fc20479" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_6.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_5.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_compress_1_19.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_maven_aether_provider_3_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_maven_archiver_3_5_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_maven_artifact_3_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_maven_compat_3_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_maven_core_3_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_maven_model_3_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_maven_model_builder_3_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_maven_plugin_api_3_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_maven_repository_metadata_3_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_maven_settings_3_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_maven_settings_builder_3_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_plugins_maven_assembly_plugin_maven_plugin_3_3_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_shared_file_management_3_0_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_shared_maven_artifact_transfer_0_11_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_shared_maven_common_artifact_filters_3_1_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_shared_maven_filtering_3_1_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_shared_maven_shared_io_3_0_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_shared_maven_shared_utils_3_1_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_wagon_wagon_provider_api_2_10.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_plexus_plexus_archiver_4_2_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_plexus_plexus_classworlds_2_2_3.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_plexus_plexus_component_annotations_1_5_5.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_plexus_plexus_interpolation_1_25.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_plexus_plexus_io_3_2_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_plexus_plexus_utils_3_3_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_iq80_snappy_snappy_0_4.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_25.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_simple_1_7_25.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_aether_aether_api_1_7.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_aether_aether_impl_1_7.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_aether_aether_spi_1_7.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_aether_aether_util_1_7.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_plexus_plexus_build_api_0_0_7.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_plexus_plexus_cipher_1_4.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_plexus_plexus_sec_dispatcher_1_3.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_sisu_sisu_guice_noaop_2_1_7.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_sisu_sisu_inject_bean_1_4_2.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_sonatype_sisu_sisu_inject_plexus_1_4_2.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_tukaani_xz_1_8.xml" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/PhotoGiftScreen.java" afterPath="$PROJECT_DIR$/src/main/java/pl/PhotoGiftScreen.java" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/CustomerPhotoKiosk$FilmProceccingOrderInventoryImpl.coverage" NAME="FilmProceccingOrderInventoryImpl Coverage Results" MODIFIED="1587022338573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>dl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CustomerPhotoKiosk$UpdateFilmProcessingOrderScreen.coverage" NAME="UpdateFilmProcessingOrderScreen Coverage Results" MODIFIED="1585985993711" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>pl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CustomerPhotoKiosk$PhotoKiosk.coverage" NAME="PhotoKiosk Coverage Results" MODIFIED="1586946410705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CustomerPhotoKiosk$PrinterServices.coverage" NAME="PrinterServices Coverage Results" MODIFIED="1591952247515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>bl.beens.*</FILTER>
+    </SUITE>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="CustomerPhotoKiosk" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="FilmProcessingScreen.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pl/FilmProcessingScreen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="748">
+              <caret line="70" column="47" lean-forward="false" selection-start-line="70" selection-start-column="47" selection-end-line="70" selection-end-column="47" />
+              <folding>
+                <element signature="e#17549#17550#0" expanded="true" />
+                <element signature="e#17587#17588#0" expanded="true" />
+                <element signature="e#17644#17645#0" expanded="true" />
+                <element signature="e#17682#17683#0" expanded="true" />
+                <element signature="e#17739#17740#0" expanded="true" />
+                <element signature="e#17777#17778#0" expanded="true" />
+                <element signature="method#getNumberOfCopies#0;class#FilmProcessingScreen#0" expanded="false" />
+                <element signature="method#getColor#0;class#FilmProcessingScreen#0" expanded="false" />
+                <element signature="method#arePaymentFieldsValid#0;class#FilmProcessingScreen#0" expanded="false" />
+                <element signature="class#RadioListener#0;class#FilmProcessingScreen#0" expanded="false" />
+                <marker date="1596369361234" expanded="false" signature="21253:21937" ph="{...}" />
+                <marker date="1596369361234" expanded="false" signature="21986:23103" ph="{...}" />
+                <marker date="1596369361234" expanded="false" signature="23149:24306" ph="{...}" />
+                <marker date="1596369361234" expanded="false" signature="24349:25141" ph="{...}" />
+                <marker date="1596369361234" expanded="false" signature="25186:25543" ph="{...}" />
+                <marker date="1596369361234" expanded="false" signature="25584:26367" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UpdateFilmProcessingOrderScreen.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pl/UpdateFilmProcessingOrderScreen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="816">
+              <caret line="126" column="56" lean-forward="true" selection-start-line="126" selection-start-column="56" selection-end-line="126" selection-end-column="56" />
+              <folding>
+                <element signature="method#UpdateFilmProcessingOrderScreen#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#populateForm#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#disableAllFields#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#setSelectedRadioButtons#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#addOtherFieldListener#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#addTotalPriceFieldsListeners#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#addDepositFieldsListeners#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#isTotalFieldsValid#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#isDepositFieldsValid#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#isOtherFieldValid#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#isFormDataValid#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#getPrintSize#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#getBorder#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#getNumberOfCopies#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#getPrintTime#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#getFilmSize#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#getColor#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="method#arePaymentFieldsValid#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+                <element signature="class#RadioListener#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>dateformat</find>
+      <find>DateF</find>
+      <find>void clos</find>
+      <find>closedLbl</find>
+      <find>save</find>
+      <find>disab</find>
+      <find>generalErrorLbl</find>
+      <find>closeOrder</find>
+      <find>close</find>
+      <find>The length of Items list Is:</find>
+      <find>getLabelContentsText</find>
+      <find>MyPrintable</find>
+      <find>vat</find>
+      <find>mm/</find>
+      <find>mm</find>
+      <find>gson.</find>
+      <find>GsonBuilder</find>
+      <find>mmm</find>
+      <find>gson</find>
+      <find>DBL</find>
+      <find>printer</find>
+      <find>from</find>
+      <find>printDialog</find>
+      <find>printr</find>
+      <find>print</find>
+      <find>customer</find>
+      <find>printl</find>
+      <find>printla</find>
+      <find>slf</find>
+      <find>log</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/dl/CutomerJSON.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dl/FilmProcessingOrderJSON.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dl/CustomerJSON.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/FilmProcessingRecords.json" />
+        <option value="$PROJECT_DIR$/src/main/resources/CustomerRecords.json" />
+        <option value="$PROJECT_DIR$/src/main/java/dl/CustomerInventory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/ManagePrinters.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/enums/FilmType.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/printers.json" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/beens/Customer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/FilmPrcessingScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/UpdateFilmPrcessingScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/UpdateFilmProcessingScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dl/OrderInventory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dl/OrderInventoryImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/beens/Order.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dl/OrderOrdersInventory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dl/OrderOrdersInventoryImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dl/OrderNumberGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/beens/OtherOrders.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dl/OtherOrdersInventory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dl/FilmProceccingOrderInventory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/ProcessFilmDevelopmentOrder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/ProcessOtherOrders.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/beens/OtherOrderTypes.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/beens/Ptinter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/beens/LabelPtinter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/beens/LabelPrinter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/CustomerScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/MainScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/PrinterService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dl/OtherOrdersInventoryImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dl/CustomerInventoryImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/beens/PrinteServices.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/beens/FilmProcessingOrder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/OrderSearchScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dl/FilmProceccingOrderInventoryImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/beens/Printer.java" />
+        <option value="$PROJECT_DIR$/resources/printers.json" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/beens/SystemProperties.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dl/SystemAndNetworkProperties.java" />
+        <option value="$PROJECT_DIR$/resources/system_properties.json" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/EngravingScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/UpdateEngravingScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/UpdatePhotoGiftScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/UpdateFilmProcessingOrderScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/beens/PrinterServices.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/FilmProcessingScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/PhotoGiftScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/PhotoKiosk.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="47" />
+    <option name="width" value="1876" />
+    <option name="height" value="1047" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Java</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="CustomerPhotoKiosk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CustomerPhotoKiosk" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CustomerPhotoKiosk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CustomerPhotoKiosk" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CustomerPhotoKiosk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CustomerPhotoKiosk" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CustomerPhotoKiosk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CustomerPhotoKiosk" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CustomerPhotoKiosk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CustomerPhotoKiosk" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CustomerPhotoKiosk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CustomerPhotoKiosk" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="bl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CustomerPhotoKiosk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CustomerPhotoKiosk" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pl" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.PhotoKiosk">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration name="FilmProceccingOrderInventoryImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="dl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="dl.FilmProceccingOrderInventoryImpl" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="CustomerPhotoKiosk" />
+      <envs />
+    </configuration>
+    <configuration name="OtherOrdersInventoryImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="dl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="dl.OtherOrdersInventoryImpl" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="CustomerPhotoKiosk" />
+      <envs />
+    </configuration>
+    <configuration name="PhotoKiosk" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="PhotoKiosk" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="CustomerPhotoKiosk" />
+      <envs />
+    </configuration>
+    <configuration name="PrinterServices" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="bl.beens.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="bl.beens.PrinterServices" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="CustomerPhotoKiosk" />
+      <envs />
+    </configuration>
+    <configuration name="SystemAndNetworkProperties" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="dl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="dl.SystemAndNetworkProperties" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="CustomerPhotoKiosk" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Application.PhotoKiosk" />
+      <item index="1" class="java.lang.String" itemvalue="Application.SystemAndNetworkProperties" />
+      <item index="2" class="java.lang.String" itemvalue="Application.OtherOrdersInventoryImpl" />
+      <item index="3" class="java.lang.String" itemvalue="Application.PrinterServices" />
+      <item index="4" class="java.lang.String" itemvalue="Application.FilmProceccingOrderInventoryImpl" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Application.PhotoKiosk" />
+        <item index="1" class="java.lang.String" itemvalue="Application.PrinterServices" />
+        <item index="2" class="java.lang.String" itemvalue="Application.FilmProceccingOrderInventoryImpl" />
+        <item index="3" class="java.lang.String" itemvalue="Application.SystemAndNetworkProperties" />
+        <item index="4" class="java.lang.String" itemvalue="Application.OtherOrdersInventoryImpl" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7da086a9-3b11-4827-8ef5-92fa5fc20479" name="Default" comment="" />
+      <created>1581017941248</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581017941248</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="47" y="0" width="1876" height="1047" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38638857" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18061674" sideWeight="0.8454441" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24971624" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22271964" sideWeight="0.15455595" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31174535" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43468717" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32711306" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.109030835" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3358946" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dl/FilmProceccingOrderInventoryImpl.java</url>
+          <line>169</line>
+          <properties />
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pl/UpdateFilmProcessingOrderScreen.java</url>
+          <line>1127</line>
+          <properties />
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dl/OtherOrdersInventoryImpl.java</url>
+          <line>99</line>
+          <properties />
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/bl/ProcessOtherOrders.java</url>
+          <line>28</line>
+          <properties />
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pl/UpdatePhotoGiftScreen.java</url>
+          <line>412</line>
+          <properties />
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dl/FilmProceccingOrderInventoryImpl.java</url>
+          <line>25</line>
+          <properties />
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dl/FilmProceccingOrderInventoryImpl.java</url>
+          <line>263</line>
+          <properties />
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pl/FilmProcessingScreen.java</url>
+          <line>493</line>
+          <properties />
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pl/UpdateFilmProcessingOrderScreen.java</url>
+          <line>530</line>
+          <properties />
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pl/UpdateFilmProcessingOrderScreen.java</url>
+          <line>1102</line>
+          <properties />
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pl/EngravingScreen.java</url>
+          <line>116</line>
+          <properties />
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pl/UpdateEngravingScreen.java</url>
+          <line>381</line>
+          <properties />
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dl/FilmProceccingOrderInventoryImpl.java</url>
+          <line>301</line>
+          <properties />
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/bl/beens/PrinterServices.java</url>
+          <line>324</line>
+          <properties />
+          <option name="timeStamp" value="108" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/bl/beens/PrinterServices.java</url>
+          <line>97</line>
+          <properties />
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/bl/ProcessOtherOrders.java</url>
+          <line>20</line>
+          <properties class="bl.ProcessOtherOrders" method="doesPhotoGiftOrderExist">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="82" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/dl/OtherOrdersInventoryImpl.java</url>
+          <line>329</line>
+          <properties class="dl.OtherOrdersInventoryImpl" method="saveOrder">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/dl/OtherOrdersInventoryImpl.java</url>
+          <line>18</line>
+          <properties class="dl.OtherOrdersInventoryImpl" method="retrieveOtherOrder">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/pl/PhotoGiftScreen.java</url>
+          <line>298</line>
+          <properties class="pl.PhotoGiftScreen" method="findCustomer">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/pl/PhotoGiftScreen.java</url>
+          <line>467</line>
+          <properties class="pl.PhotoGiftScreen" method="isTotalFieldsValid">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="115" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/dl/FilmProcessingOrderJSON.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/dl/CustomerJSON.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/FilmProcessingRecords.json" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/orderNumberHolder.json" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/CustomerRecords.json" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/xerial/sqlite-jdbc/3.21.0/sqlite-jdbc-3.21.0.jar!/org/sqlite/jdbc3/JDBC3Statement.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bl/ManagePrinters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/System.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1156">
+          <caret line="56" column="18" lean-forward="true" selection-start-line="55" selection-start-column="22" selection-end-line="56" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/xerial/sqlite-jdbc/3.21.0/sqlite-jdbc-3.21.0.jar!/org/sqlite/jdbc3/JDBC3Connection.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/awt/Component.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="1241" column="19" lean-forward="false" selection-start-line="1241" selection-start-column="19" selection-end-line="1241" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bl/beens/Customer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="63" column="34" lean-forward="false" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bl/beens/Order.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/bl/enums/OrderType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bl/enums/FilmType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jdatepicker/jdatepicker/1.3.4/jdatepicker-1.3.4.jar!/org/jdatepicker/impl/JDatePickerImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dl/OrderNumberGenerator.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/bl/beens/OtherOrders.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/dl/FilmProceccingOrderInventory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bl/ProcessFilmDevelopmentOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="21" column="23" lean-forward="false" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dl/OtherOrdersInventory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bl/ProcessOtherOrders.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="34" column="39" lean-forward="false" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="method#doesEngravingOrderExist#0;class#ProcessOtherOrders#0" expanded="false" />
+            <element signature="method#doesPhotoGiftOrderExist#0;class#ProcessOtherOrders#0" expanded="false" />
+            <element signature="method#saveOrder#0;class#ProcessOtherOrders#0" expanded="false" />
+            <element signature="e#978#979#0" expanded="false" />
+            <element signature="e#1034#1035#0" expanded="false" />
+            <element signature="method#getPhotoGiftOrder#0;class#ProcessOtherOrders#0" expanded="false" />
+            <element signature="method#getEhgravingOrder#0;class#ProcessOtherOrders#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bl/PrinterService.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/system_properties.json" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/printers.json" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/dl/OtherOrdersInventoryImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1836">
+          <caret line="446" column="0" lean-forward="false" selection-start-line="446" selection-start-column="0" selection-end-line="446" selection-end-column="0" />
+          <folding>
+            <element signature="method#retrieveOtherOrder#0;class#OtherOrdersInventoryImpl#0" expanded="false" />
+            <element signature="method#orderExists#0;class#OtherOrdersInventoryImpl#0" expanded="false" />
+            <element signature="method#retrieveAllOrders#0;class#OtherOrdersInventoryImpl#0" expanded="false" />
+            <element signature="method#closeOrder#0;class#OtherOrdersInventoryImpl#0" expanded="false" />
+            <element signature="method#updateOrder#0;class#OtherOrdersInventoryImpl#0" expanded="false" />
+            <element signature="method#getMaxOrderNumber#0;class#OtherOrdersInventoryImpl#0" expanded="false" />
+            <element signature="method#getHighestOrderId#0;class#OtherOrdersInventoryImpl#0" expanded="false" />
+            <element signature="method#saveOrder#0;class#OtherOrdersInventoryImpl#0" expanded="false" />
+            <element signature="method#getPhotoGiftOrder#0;class#OtherOrdersInventoryImpl#0" expanded="false" />
+            <element signature="method#getEngravingOrder#0;class#OtherOrdersInventoryImpl#0" expanded="false" />
+            <element signature="method#isConnectionValid#0;class#OtherOrdersInventoryImpl#0" expanded="false" />
+            <element signature="method#initialize#0;class#OtherOrdersInventoryImpl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dl/CustomerInventory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dl/CustomerInventoryImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/jre/lib/rt.jar!/sun/print/RasterPrinterJob.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="816" column="0" lean-forward="false" selection-start-line="816" selection-start-column="0" selection-end-line="816" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/javax/swing/JTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="6491" column="47" lean-forward="false" selection-start-line="6491" selection-start-column="47" selection-end-line="6491" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/awt/print/Printable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="107" column="8" lean-forward="false" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/awt/print/PrinterJob.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="50" column="22" lean-forward="false" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bl/beens/Printer.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/bl/beens/FilmProcessingOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dl/FilmProceccingOrderInventoryImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="method#filmProcessingOrderExists#0;class#FilmProceccingOrderInventoryImpl#0" expanded="false" />
+            <element signature="method#closeFilmProcessingOrder#0;class#FilmProceccingOrderInventoryImpl#0" expanded="false" />
+            <element signature="method#getLastOrderNumber#0;class#FilmProceccingOrderInventoryImpl#0" expanded="false" />
+            <element signature="method#saveProcessingOrder#0;class#FilmProceccingOrderInventoryImpl#0" expanded="false" />
+            <element signature="method#updateFilmProcessingOrder#0;class#FilmProceccingOrderInventoryImpl#0" expanded="false" />
+            <element signature="method#insertFilmProcessingOrder#0;class#FilmProceccingOrderInventoryImpl#0" expanded="false" />
+            <element signature="method#getAllorderEmails#0;class#FilmProceccingOrderInventoryImpl#0" expanded="false" />
+            <element signature="method#isConnectionValid#0;class#FilmProceccingOrderInventoryImpl#0" expanded="false" />
+            <element signature="method#getAllProcessingOrders#0;class#FilmProceccingOrderInventoryImpl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dl/SystemAndNetworkProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="36" column="78" lean-forward="false" selection-start-line="36" selection-start-column="78" selection-end-line="36" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/printers.json" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/bl/beens/SystemProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="6" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/system_properties.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="55" lean-forward="false" selection-start-line="2" selection-start-column="55" selection-end-line="2" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/OrderSearchScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3315">
+          <caret line="210" column="27" lean-forward="false" selection-start-line="210" selection-start-column="27" selection-end-line="210" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bl/beens/OtherOrderTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/EngravingScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5270">
+          <caret line="357" column="11" lean-forward="false" selection-start-line="357" selection-start-column="11" selection-end-line="358" selection-end-column="43" />
+          <folding>
+            <element signature="method#findCustomer#0;class#EngravingScreen#0" expanded="false" />
+            <element signature="method#addTotalPriceFieldsListeners#0;class#EngravingScreen#0" expanded="false" />
+            <element signature="method#addDepositFieldsListeners#0;class#EngravingScreen#0" expanded="false" />
+            <element signature="method#isTotalFieldsValid#0;class#EngravingScreen#0" expanded="false" />
+            <element signature="method#isDepositFieldsValid#0;class#EngravingScreen#0" expanded="false" />
+            <element signature="method#isFormDataValid#0;class#EngravingScreen#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/UpdatePhotoGiftScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3332">
+          <caret line="416" column="51" lean-forward="false" selection-start-line="416" selection-start-column="51" selection-end-line="416" selection-end-column="51" />
+          <folding>
+            <element signature="method#setupScreen#0;class#UpdatePhotoGiftScreen#0" expanded="false" />
+            <element signature="method#addTotalPriceFieldsListeners#0;class#UpdatePhotoGiftScreen#0" expanded="false" />
+            <element signature="method#addDepositFieldsListeners#0;class#UpdatePhotoGiftScreen#0" expanded="false" />
+            <element signature="method#isTotalFieldsValid#0;class#UpdatePhotoGiftScreen#0" expanded="false" />
+            <element signature="method#isDepositFieldsValid#0;class#UpdatePhotoGiftScreen#0" expanded="false" />
+            <element signature="method#isFormDataValid#0;class#UpdatePhotoGiftScreen#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/UpdateEngravingScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3689">
+          <caret line="457" column="12" lean-forward="false" selection-start-line="457" selection-start-column="12" selection-end-line="462" selection-end-column="43" />
+          <folding>
+            <element signature="method#setupScreen#0;class#UpdateEngravingScreen#0" expanded="false" />
+            <element signature="method#closeOrder#0;class#UpdateEngravingScreen#0" expanded="false" />
+            <element signature="class#ButtonListener#0;class#UpdateEngravingScreen#0" expanded="false" />
+            <element signature="method#addTotalPriceFieldsListeners#0;class#UpdateEngravingScreen#0" expanded="false" />
+            <element signature="method#addDepositFieldsListeners#0;class#UpdateEngravingScreen#0" expanded="false" />
+            <element signature="method#isTotalFieldsValid#0;class#UpdateEngravingScreen#0" expanded="false" />
+            <element signature="method#isDepositFieldsValid#0;class#UpdateEngravingScreen#0" expanded="false" />
+            <element signature="method#isFormDataValid#0;class#UpdateEngravingScreen#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/MainScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="28" selection-start-column="27" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bl/beens/PrinterServices.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3111">
+          <caret line="214" column="43" lean-forward="false" selection-start-line="214" selection-start-column="43" selection-end-line="214" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="method#getLabelContentsText#0;class#PrinterServices#0" expanded="false" />
+            <element signature="e#5991#5992#0" expanded="false" />
+            <element signature="e#6037#6038#0" expanded="false" />
+            <element signature="e#6087#6088#0" expanded="false" />
+            <element signature="e#6120#6121#0" expanded="false" />
+            <element signature="method#dump#1;class#PrinterServices#0" expanded="false" />
+            <element signature="e#6730#6731#0" expanded="false" />
+            <element signature="e#6766#6767#0" expanded="false" />
+            <element signature="e#6830#6831#0" expanded="false" />
+            <element signature="e#6880#6881#0" expanded="false" />
+            <element signature="e#6925#6926#0" expanded="false" />
+            <element signature="e#6959#6960#0" expanded="false" />
+            <element signature="e#7020#7021#0" expanded="false" />
+            <element signature="e#7066#7067#0" expanded="false" />
+            <element signature="e#7103#7104#0" expanded="false" />
+            <element signature="e#7134#7135#0" expanded="false" />
+            <element signature="e#7184#7185#0" expanded="false" />
+            <element signature="e#7224#7225#0" expanded="false" />
+            <element signature="e#7265#7266#0" expanded="false" />
+            <element signature="e#7293#7294#0" expanded="false" />
+            <element signature="e#7344#7345#0" expanded="false" />
+            <element signature="e#7378#7379#0" expanded="false" />
+            <element signature="e#7437#7438#0" expanded="false" />
+            <element signature="e#7479#7480#0" expanded="false" />
+            <element signature="e#7518#7519#0" expanded="false" />
+            <element signature="e#7550#7551#0" expanded="false" />
+            <element signature="e#7603#7604#0" expanded="false" />
+            <element signature="e#7645#7646#0" expanded="false" />
+            <element signature="method#setFilmProcessingOrder#0;class#PrinterServices#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/CustomerScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="105" column="31" lean-forward="false" selection-start-line="105" selection-start-column="31" selection-end-line="105" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/PhotoGiftScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="90" column="43" lean-forward="false" selection-start-line="90" selection-start-column="43" selection-end-line="90" selection-end-column="43" />
+          <folding>
+            <element signature="method#setupScreen#0;class#PhotoGiftScreen#0" expanded="false" />
+            <element signature="method#findCustomer#0;class#PhotoGiftScreen#0" expanded="false" />
+            <element signature="class#ButtonListener#0;class#PhotoGiftScreen#0" expanded="false" />
+            <element signature="method#addTotalPriceFieldsListeners#0;class#PhotoGiftScreen#0" expanded="false" />
+            <element signature="method#addDepositFieldsListeners#0;class#PhotoGiftScreen#0" expanded="false" />
+            <element signature="method#isTotalFieldsValid#0;class#PhotoGiftScreen#0" expanded="false" />
+            <element signature="method#isDepositFieldsValid#0;class#PhotoGiftScreen#0" expanded="false" />
+            <element signature="method#isFormDataValid#0;class#PhotoGiftScreen#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/PhotoKiosk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/FilmProcessingScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="70" column="47" lean-forward="false" selection-start-line="70" selection-start-column="47" selection-end-line="70" selection-end-column="47" />
+          <folding>
+            <element signature="e#17549#17550#0" expanded="true" />
+            <element signature="e#17587#17588#0" expanded="true" />
+            <element signature="e#17644#17645#0" expanded="true" />
+            <element signature="e#17682#17683#0" expanded="true" />
+            <element signature="e#17739#17740#0" expanded="true" />
+            <element signature="e#17777#17778#0" expanded="true" />
+            <element signature="method#getNumberOfCopies#0;class#FilmProcessingScreen#0" expanded="false" />
+            <element signature="method#getColor#0;class#FilmProcessingScreen#0" expanded="false" />
+            <element signature="method#arePaymentFieldsValid#0;class#FilmProcessingScreen#0" expanded="false" />
+            <element signature="class#RadioListener#0;class#FilmProcessingScreen#0" expanded="false" />
+            <marker date="1596369361234" expanded="false" signature="21253:21937" ph="{...}" />
+            <marker date="1596369361234" expanded="false" signature="21986:23103" ph="{...}" />
+            <marker date="1596369361234" expanded="false" signature="23149:24306" ph="{...}" />
+            <marker date="1596369361234" expanded="false" signature="24349:25141" ph="{...}" />
+            <marker date="1596369361234" expanded="false" signature="25186:25543" ph="{...}" />
+            <marker date="1596369361234" expanded="false" signature="25584:26367" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/UpdateFilmProcessingOrderScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="126" column="56" lean-forward="true" selection-start-line="126" selection-start-column="56" selection-end-line="126" selection-end-column="56" />
+          <folding>
+            <element signature="method#UpdateFilmProcessingOrderScreen#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#populateForm#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#disableAllFields#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#setSelectedRadioButtons#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#addOtherFieldListener#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#addTotalPriceFieldsListeners#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#addDepositFieldsListeners#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#isTotalFieldsValid#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#isDepositFieldsValid#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#isOtherFieldValid#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#isFormDataValid#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#getPrintSize#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#getBorder#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#getNumberOfCopies#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#getPrintTime#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#getFilmSize#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#getColor#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="method#arePaymentFieldsValid#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+            <element signature="class#RadioListener#0;class#UpdateFilmProcessingOrderScreen#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
